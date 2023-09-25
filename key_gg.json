@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "supervisor-online-tsm",
+  "private_key_id": "edc2b29289a9ecb9fdaf1a0c0a24ad64ea935e6d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDLeewOXEoTnTWK\nSEJADKUG5tWJyaK6KqlCUFzlWSWZtBXc04IxyUmi9qoaJHkH/oRGykbQ6VlQEDBk\nrCOGz50ojO5q7toD/6LM0OL+no19H7IIP5+3HwOch36RFENRwppDwaymuoEW+2c6\nobuVxWdB9+pWNI4N5AVDVd53g38Nykz7BBgbJRifKSaaWmtxRxExkUPIAPvLco+9\ngrmaoeU0s+5bkHzTOwMxHzqjrMYezQYYI9vhF/dmlgTFcH1Ud3XtzJRvh5X+E307\nWf4PqDk8vjzqdyqn4ivck8ThthqfdPvr+vUWgu4olbEbVPoaHAIdGcbuZr3gzxTG\n2/uecNHhAgMBAAECggEAIpsHxKF5j8Bq/KuxaMc9weC8bIS4gkUDKF4WjoMM3Ak+\ntqHaQLFlLqwY3f1aADwPLyLzzFADepRmRpjoKeNhbSYa3mDk/00Y2RClqnw4wBEF\n7FU1yqUhrht1MSNrF5qrNd7YiDqr/cagFd6v0pcSKqwJVMP3bPFc28jc3yKkFyoE\nz+gSZUm8HzaRhDSW39BGktyFWnbvOs5PC77gYN0+nuN3khYemwkWHACSv9umFI71\nwXlMhPpK+lLAPZX+oKFZAdWIp87MuPStF0hB7PMXyOp1r3oameEXwY+rhzoLqhJx\nJv5i2ExGl7rIZagl1S8C5Rv0vvY6IJXMipbGRiXT4QKBgQD7wbKKT5UDlQy3hi5n\nP+pq0uQ67YOaQ4c6RLgipHjeHsu+ErB+ZPpK/kOHM2HycFza07t0U2B2zWtrx0Ps\nFX3kK6SkxsxHQdnIZKvpDOE3VBVzon50jcWjTIwoJ0gdSIAT8C/I1GHn/0fMQF7R\nSUWWXfa8GLoScgdIYPK5dVzvNQKBgQDO5+ZsvHJr1hiO/IM5PUdfazy3eoX6XXw3\n+tZYrbptGxiAovZNgWpD3UOi5FEfGmjEIaf60TlFmkZr99RdpVIBCJvpqBngin2k\n8h5eBV9QRmiZpa9xJx5JkdWb7T6QPVJy/4ZpJ0bazEC1HjLxtU18DRIA5Da6QFdS\nYkCEPaeRfQKBgQCXjHtIjS17sY6tL2Xhm3UmhvsCihWtmDbgGZvqpq1nsIwfSCrc\neza8TCEkUwcEJSWQSOLP3Jz2ByRCBfraM/nLj4YV9uHjhz1tR0TBDpLIdqJPMKME\n0I8HhT3dsf/UON94oR5yu36QZHi4+IrbW0s7gCbWBeCE2AWQSWPzxjWCfQKBgQC6\ntpC9DW3gHGs7FWpBzCfNVtOK65ld7uD7D3RAwD3c2bfJ1cWY+bFwnoq7w3flLore\ne1TARfB9/BOSuSm+fEK9RgyU1arMc42gvRFkXUq/AVrBVMA2x0tQrrbqKDTuKzht\nKGQeHmCVb/7wstjcQHU0/gKCJW+xsgBbCukXrR+7bQKBgCx1eiWGrge7z826KiYf\nWb0+MkEcdIUjR4m0U7B0FO0LQMSB33xQlQ4oFDbar+tiVSFZWUi/HJDukE0GJAZX\ncvjqzyuS1ilnarlO5oKQjO3WFbL0gujxLb4vMjP+3c4Nq1yNI1LSszKk4G0835xv\nUibVXOY3JmezaFJ7BPen4EUk\n-----END PRIVATE KEY-----\n",
+  "client_email": "teammy@supervisor-online-tsm.iam.gserviceaccount.com",
+  "client_id": "115970091782841310514",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/teammy%40supervisor-online-tsm.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

@@ -22,6 +22,7 @@ dayjs.locale("th");
 import dynamic from "next/dynamic";
 import MyDocument from "@/components/mydocument";
 import { clsx } from "clsx"
+import PdfMake from "@/components/pdfmake";
 
 const PDFViewer = dynamic(
   () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
@@ -85,6 +86,7 @@ const IndexPage = () => {
               </SelectTrigger>
               <SelectContent className="bg-white">
                 <SelectGroup>
+                <SelectItem value="all">ทุกเวร</SelectItem>
                   <SelectItem value="1">เวรดึก</SelectItem>
                   <SelectItem value="2">เวรเช้า</SelectItem>
                   <SelectItem value="3">เวรบ่าย</SelectItem>
