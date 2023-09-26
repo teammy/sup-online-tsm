@@ -1,34 +1,26 @@
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
+
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
-import React from 'react'
-
-const PdfMake = () => {
-  const createPdf = () => {
-    const documentDefinition = {
-      content: [
-        {
-          table: {
-            headerRows: 1,
-            body: [
-              ['Header 1', 'Header 2', 'Header 3'],
-              ['Value 1', 'Value 2', 'Value 3'],
-              ['Value 4', 'Value 5', 'Value 6'],
-            ]
-          }
+const generatePDF = () => {
+  const documentDefinition = {
+    content: [
+      {
+        table: {
+          body: [
+            ['No', 'Name', 'Phone', 'Total'],
+            ['1', 'John Doe', '123456789', '5']
+          ]
         }
-      ]
-    };
-    pdfMake.createPdf(documentDefinition).download("example.pdf");
+      }
+    ]
   };
 
-  return (
-    <div>
-      <button onClick={createPdf}>Download PDF</button>
-    </div>
-  );
+  // You can also download the PDF with this line
+  pdfMake.createPdf(documentDefinition).download('example.pdf');
+  
+  // Or get the URL of the generated PDF if it is saved on a server or cloud storage
+  const pdfURL = '/public/filepdf'; // replace with your actual PDF URL
+  return pdfURL;
 };
-
-
-export default PdfMake

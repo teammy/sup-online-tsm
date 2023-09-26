@@ -22,7 +22,7 @@ dayjs.locale("th");
 import dynamic from "next/dynamic";
 import MyDocument from "@/components/mydocument";
 import { clsx } from "clsx"
-import PdfMake from "@/components/pdfmake";
+import { Document,Page } from "@react-pdf/renderer";
 
 const PDFViewer = dynamic(
   () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
@@ -37,7 +37,7 @@ const IndexPage = () => {
   const [selectedThaiDate, setSelectedThaiDate] = useState();
   const [selectedShift, setSelectedShift] = useState("");
   const [fetchedData, setFetchedData] = useState("");
-
+const displayGenerated = true;
   const handleShiftChange = (value:any) => {
     console.log(value);
     setSelectedShift(value);
@@ -108,7 +108,7 @@ const IndexPage = () => {
       <hr className="mt-4 w-full border-[#cfcfcf]" />
       <div className="flex w-full justify-center items-center mt-4">
         <PDFViewer  width={1600} height={900}>
-          <MyDocument data={fetchedData} />
+        <MyDocument data={fetchedData} />
         </PDFViewer>
       </div>
     </>

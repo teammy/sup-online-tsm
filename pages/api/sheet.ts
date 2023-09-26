@@ -17,10 +17,11 @@ export default function handler(req:any, res:any) {
             //CUSTOMIZATION FROM HERE
             const opt = {
                 spreadsheetId: '1f3lPATgLXU5vsilWaylMqIm49U75EazBnHIcbGMC8LM',
-                range: 'Sheet1!A2:A6'
+                range: 'Sheet1!D2:D6'
             };
 
             let data = await gsapi.spreadsheets.values.get(opt);
+            console.log(data.data.values)
             return res.status(400).send(JSON.stringify({error: false, data: data.data.values}));
         });
     } catch (e:any) {
