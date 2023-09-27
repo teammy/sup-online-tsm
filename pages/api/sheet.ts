@@ -47,14 +47,11 @@ export default function handler(req: any, res: any) {
 
       //CUSTOMIZATION FROM HERE
       const opt = {
-        spreadsheetId: "1f3lPATgLXU5vsilWaylMqIm49U75EazBnHIcbGMC8LM",
-        range: "Sheet1!B2:D",
+        spreadsheetId: process.env.SHEET_ID,
+        range: "Sheet1!B2:FG",
       };
 
       let data: any = await gsapi.spreadsheets.values.get(opt);
-
-
-
 
       const filterData = data.data.values.filter(
           (item: any) => {
@@ -66,7 +63,7 @@ export default function handler(req: any, res: any) {
           }
       );
 
-    //   console.log(data.data.values)
+
       return res.status(200).send(JSON.stringify({error: false, data: filterData}));
     });
   } catch (e: any) {
