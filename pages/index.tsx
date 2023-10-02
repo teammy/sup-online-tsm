@@ -4,7 +4,7 @@ import pdfFonts from "pdfmake/build/vfs_fonts";
 import { clsx } from "clsx"
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import { Button } from "@/components/ui/button";
-// var buddhistEra = require('dayjs/plugin/buddhistEra')
+var buddhistEra = require('dayjs/plugin/buddhistEra')
 import { IBM_Plex_Sans_Thai_Looped } from 'next/font/google';
 const thaiFont = IBM_Plex_Sans_Thai_Looped({
   subsets: ['thai'],
@@ -24,7 +24,7 @@ import { ThaiDatePicker } from "thaidatepicker-react";
 import dayjs from "dayjs";
 import "dayjs/locale/th";
 dayjs.locale("th");
-// dayjs.extend(buddhistEra);
+dayjs.extend(buddhistEra);
 
 pdfMake.fonts = {
   THSarabunNew: {
@@ -43,18 +43,28 @@ function PDFMakeExample() {
   const [tableData, setTableData] = useState<TableData[]>([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedThaiDate, setSelectedThaiDate] = useState();
-  const [selectedShift, setSelectedShift] = useState("");
+  const [selectedShift, setSelectedShift] = useState(0);
 
-  // const formatThaiMonth = dayjs(selectedThaiDate, { buddhistEra: true }).format('D MMMM BBBB', { buddhistEra: true });
+  let shiftName = '';
+if (Number(selectedShift) === 1) {
+    shiftName = 'เวรดึก';
+} else if (Number(selectedShift) === 2) {
+    shiftName = 'เวรเช้า';
+} else if (Number(selectedShift) === 3) {
+    shiftName = 'เวรบ่าย';
+} else {
+    shiftName = 'Invalid Shift';
+}
+
+
+
+  const formatThaiMonth = dayjs(selectedDate, { buddhistEra: true }).format('D MMMM BBBB', { buddhistEra: true });
 
   const handleSelectChange = (e: any) => {
-    console.log(e);
     setSelectedShift(e);
 };
 
 const handleDatePickerChange = (christDate: any, buddhistDate: any) => {
-  console.log(christDate);
-  console.log(buddhistDate);
   setSelectedDate(christDate);
   setSelectedThaiDate(buddhistDate);
 };
@@ -72,7 +82,6 @@ const handleShiftChange = (value:any) => {
           `http://localhost:3000/api/sheet?sentDate=${selectedDate}&worktime=${selectedShift}`
         );
         const data = await response.json();
-        console.log("Fetched Data:", data.data);
         setTableData(data.data);
       } catch (error) {
         console.error(error);
@@ -83,6 +92,9 @@ const handleShiftChange = (value:any) => {
 
   const generatePDF = () => {
     const tableRows:any = [];
+    const tableEmsRows:any = [];
+    const tableSmcRows:any = [];
+    const tableOrRows:any = [];
 
     const orderSortData = [
       'MICU', 
@@ -122,9 +134,9 @@ const handleShiftChange = (value:any) => {
     
       return aIndex - bIndex;
     });
-    
-    tableData.map((item: any, index) => {
 
+    tableData.map((item: any, index) => {
+      console.log("tableRows",tableRows)
       const row5 = () => {
         if(item[2]==='พิเศษอายุรกรรม ชั้น2 (อาคาร75ปี)') {
           return item[28]
@@ -137,67 +149,20 @@ const handleShiftChange = (value:any) => {
         }
       }
 
-      const rowOriginal = [
-        { text: index+1,
-          alignment: 'center'
-        },
-            { text: item[2],
-              
-            },
-            { 
-              text: item[2] ==='พิเศษอายุรกรรม ชั้น2 (อาคาร75ปี)' ? item[42] : item[28]
-            },
-            { 
-              text: row5()  
-            },
-            { 
-              text: item[44],
-              alignment: 'center'
-            },
-            { 
-              text: item[45],
-              alignment: 'center'
-            },
-            { 
-              text: item[46],alignment: 'center' 
-            },
-            { text: item[47],alignment: 'center' },
-            { text: item[48],alignment: 'center' },
-            { text: item[49],alignment: 'center' },
-            { text: item[50],alignment: 'center' },
-            { text: item[115],alignment: 'center' },
-            { text: item[116],alignment: 'center' },
-            { text: item[117],alignment: 'center' },
-            { text: item[118],alignment: 'center' },
-            { text: item[119],alignment: 'center' },
-            { text: item[120],alignment: 'center' },
-            { text: item[121],alignment: 'center' },
-            { text: item[122],alignment: 'center' },
-            { text: item[123],alignment: 'center' },
-            { text: item[137],alignment: 'center' },
-            "",
-            { text: item[155],alignment: 'center' },
-            { text: item[156],alignment: 'center' },
-            { text: item[157],alignment: 'center' },
-            { text: item[158],alignment: 'center' },
-            { text: item[159],alignment: 'center' },
-            { text: item[160] },
-      ];
-
-      tableRows.push(rowOriginal);
-
-      if (item[2] === 'หอผู้ป่วยศัลยกรรมชาย') {
-        const newRowMaleSurgicalWard = [
-          { text: "",
+      if (item[2] === 'MICU') {
+        const rowMicu = [
+          { text: index+1,alignment: 'center'
           },
-              { text: "ddwadwa"
+              { text: item[2]
                 
               },
               { 
-                text: item[2] ==='พิเศษอายุรกรรม ชั้น2 (อาคาร75ปี)' ? item[42] : item[28]
+                text: item[42],
+                alignment: 'center'
               },
               { 
-                text: "" 
+                text: item[43],
+                alignment: 'center'
               },
               { 
                 text: item[44],
@@ -232,256 +197,1269 @@ const handleShiftChange = (value:any) => {
               { text: item[159],alignment: 'center' },
               { text: item[160] }
         ]
-        tableRows.push(newRowMaleSurgicalWard); 
+        tableRows.push(rowMicu); 
+      } 
+
+      if (item[2] === 'SICU') {
+        const rowSicu = [
+          { text: index+1,alignment: 'center'
+          },
+              { text: item[2]
+                
+              },
+              { 
+                text: item[42],
+                alignment: 'center'
+              },
+              { 
+                text: item[43],
+                alignment: 'center'
+              },
+              { 
+                text: item[44],
+                alignment: 'center'
+              },
+              { 
+                text: item[45],
+                alignment: 'center'
+              },
+              { 
+                text: item[46],alignment: 'center' 
+              },
+              { text: item[47],alignment: 'center' },
+              { text: item[48],alignment: 'center' },
+              { text: item[49],alignment: 'center' },
+              { text: item[50],alignment: 'center' },
+              { text: item[115],alignment: 'center' },
+              { text: item[116],alignment: 'center' },
+              { text: item[117],alignment: 'center' },
+              { text: item[118],alignment: 'center' },
+              { text: item[119],alignment: 'center' },
+              { text: item[120],alignment: 'center' },
+              { text: item[121],alignment: 'center' },
+              { text: item[122],alignment: 'center' },
+              { text: item[123],alignment: 'center' },
+              { text: item[137],alignment: 'center' },
+              "",
+              { text: item[155],alignment: 'center' },
+              { text: item[156],alignment: 'center' },
+              { text: item[157],alignment: 'center' },
+              { text: item[158],alignment: 'center' },
+              { text: item[159],alignment: 'center' },
+              { text: item[160] }
+        ]
+        tableRows.push(rowSicu); 
+      } 
+
+      if (item[2] === 'SUB  ICU') {
+        const rowSubicu = [
+          { text: index+1,alignment: 'center'
+          },
+              { text: item[2]
+                
+              },
+              { 
+                text: item[42],
+                alignment: 'center'
+              },
+              { 
+                text: item[43],
+                alignment: 'center'
+              },
+              { 
+                text: item[44],
+                alignment: 'center'
+              },
+              { 
+                text: item[45],
+                alignment: 'center'
+              },
+              { 
+                text: item[46],alignment: 'center' 
+              },
+              { text: item[47],alignment: 'center' },
+              { text: item[48],alignment: 'center' },
+              { text: item[49],alignment: 'center' },
+              { text: item[50],alignment: 'center' },
+              { text: item[115],alignment: 'center' },
+              { text: item[116],alignment: 'center' },
+              { text: item[117],alignment: 'center' },
+              { text: item[118],alignment: 'center' },
+              { text: item[119],alignment: 'center' },
+              { text: item[120],alignment: 'center' },
+              { text: item[121],alignment: 'center' },
+              { text: item[122],alignment: 'center' },
+              { text: item[123],alignment: 'center' },
+              { text: item[137],alignment: 'center' },
+              "",
+              { text: item[155],alignment: 'center' },
+              { text: item[156],alignment: 'center' },
+              { text: item[157],alignment: 'center' },
+              { text: item[158],alignment: 'center' },
+              { text: item[159],alignment: 'center' },
+              { text: item[160] }
+        ]
+        tableRows.push(rowSubicu); 
+      } 
+
+      if (item[2] === 'NICU') {
+        const rowNicu = [
+          { text: index+1,alignment: 'center'
+          },
+              { text: item[2]
+                
+              },
+              { 
+                text: item[42],
+                alignment: 'center'
+              },
+              { 
+                text: item[43],
+                alignment: 'center'
+              },
+              { 
+                text: item[44],
+                alignment: 'center'
+              },
+              { 
+                text: item[45],
+                alignment: 'center'
+              },
+              { 
+                text: item[46],alignment: 'center' 
+              },
+              { text: item[47],alignment: 'center' },
+              { text: item[48],alignment: 'center' },
+              { text: item[49],alignment: 'center' },
+              { text: item[50],alignment: 'center' },
+              { text: item[115],alignment: 'center' },
+              { text: item[116],alignment: 'center' },
+              { text: item[117],alignment: 'center' },
+              { text: item[118],alignment: 'center' },
+              { text: item[119],alignment: 'center' },
+              { text: item[120],alignment: 'center' },
+              { text: item[121],alignment: 'center' },
+              { text: item[122],alignment: 'center' },
+              { text: item[123],alignment: 'center' },
+              { text: item[137],alignment: 'center' },
+              "",
+              { text: item[155],alignment: 'center' },
+              { text: item[156],alignment: 'center' },
+              { text: item[157],alignment: 'center' },
+              { text: item[158],alignment: 'center' },
+              { text: item[159],alignment: 'center' },
+              { text: item[160] }
+        ]
+        tableRows.push(rowNicu); 
+      } 
+
+      if (item[2] === 'หอผู้ป่วยอายุรกรรมหญิง') {
+        const rowMedFemale = [
+          { text: index+1,alignment: 'center'
+          },
+              { text: item[2]
+                
+              },
+              { 
+                text: item[42],
+                alignment: 'center'
+              },
+              { 
+                text: item[43],
+                alignment: 'center'
+              },
+              { 
+                text: item[44],
+                alignment: 'center'
+              },
+              { 
+                text: item[45],
+                alignment: 'center'
+              },
+              { 
+                text: item[46],alignment: 'center' 
+              },
+              { text: item[47],alignment: 'center' },
+              { text: item[48],alignment: 'center' },
+              { text: item[49],alignment: 'center' },
+              { text: item[50],alignment: 'center' },
+              { text: item[115],alignment: 'center' },
+              { text: item[116],alignment: 'center' },
+              { text: item[117],alignment: 'center' },
+              { text: item[118],alignment: 'center' },
+              { text: item[119],alignment: 'center' },
+              { text: item[120],alignment: 'center' },
+              { text: item[121],alignment: 'center' },
+              { text: item[122],alignment: 'center' },
+              { text: item[123],alignment: 'center' },
+              { text: item[137],alignment: 'center' },
+              "",
+              { text: item[155],alignment: 'center' },
+              { text: item[156],alignment: 'center' },
+              { text: item[157],alignment: 'center' },
+              { text: item[158],alignment: 'center' },
+              { text: item[159],alignment: 'center' },
+              { text: item[160] }
+        ]
+        tableRows.push(rowMedFemale); 
+      } 
+
+      if (item[2] === 'หอผู้ป่วยอายุรกรรมชาย') {
+        const rowMedmale = [
+          { text: index+1,alignment: 'center'
+          },
+              { text: item[2]
+                
+              },
+              { 
+                text: item[42],
+                alignment: 'center'
+              },
+              { 
+                text: item[43],
+                alignment: 'center'
+              },
+              { 
+                text: item[44],
+                alignment: 'center'
+              },
+              { 
+                text: item[45],
+                alignment: 'center'
+              },
+              { 
+                text: item[46],alignment: 'center' 
+              },
+              { text: item[47],alignment: 'center' },
+              { text: item[48],alignment: 'center' },
+              { text: item[49],alignment: 'center' },
+              { text: item[50],alignment: 'center' },
+              { text: item[115],alignment: 'center' },
+              { text: item[116],alignment: 'center' },
+              { text: item[117],alignment: 'center' },
+              { text: item[118],alignment: 'center' },
+              { text: item[119],alignment: 'center' },
+              { text: item[120],alignment: 'center' },
+              { text: item[121],alignment: 'center' },
+              { text: item[122],alignment: 'center' },
+              { text: item[123],alignment: 'center' },
+              { text: item[137],alignment: 'center' },
+              "",
+              { text: item[155],alignment: 'center' },
+              { text: item[156],alignment: 'center' },
+              { text: item[157],alignment: 'center' },
+              { text: item[158],alignment: 'center' },
+              { text: item[159],alignment: 'center' },
+              { text: item[160] }
+        ]
+        tableRows.push(rowMedmale); 
+      } 
+
+      if (item[2] === 'หอผู้ป่วยศัลยกรรมหญิง') {
+        const rowSurgFemale = [
+          { text: index+1,alignment: 'center'
+          },
+              { text: item[2]
+                
+              },
+              { 
+                text: item[42],
+                alignment: 'center'
+              },
+              { 
+                text: item[43],
+                alignment: 'center'
+              },
+              { 
+                text: item[44],
+                alignment: 'center'
+              },
+              { 
+                text: item[45],
+                alignment: 'center'
+              },
+              { 
+                text: item[46],alignment: 'center' 
+              },
+              { text: item[47],alignment: 'center' },
+              { text: item[48],alignment: 'center' },
+              { text: item[49],alignment: 'center' },
+              { text: item[50],alignment: 'center' },
+              { text: item[115],alignment: 'center' },
+              { text: item[116],alignment: 'center' },
+              { text: item[117],alignment: 'center' },
+              { text: item[118],alignment: 'center' },
+              { text: item[119],alignment: 'center' },
+              { text: item[120],alignment: 'center' },
+              { text: item[121],alignment: 'center' },
+              { text: item[122],alignment: 'center' },
+              { text: item[123],alignment: 'center' },
+              { text: item[137],alignment: 'center' },
+              "",
+              { text: item[155],alignment: 'center' },
+              { text: item[156],alignment: 'center' },
+              { text: item[157],alignment: 'center' },
+              { text: item[158],alignment: 'center' },
+              { text: item[159],alignment: 'center' },
+              { text: item[160] }
+        ]
+        tableRows.push(rowSurgFemale); 
+      } 
+
+      if (item[2] === 'หอผู้ป่วยจิตเวช') {
+        const rowPsychiatry = [
+          { text: index+1,alignment: 'center'
+          },
+              { text: item[2]
+                
+              },
+              { 
+                text: item[42],
+                alignment: 'center'
+              },
+              { 
+                text: item[43],
+                alignment: 'center'
+              },
+              { 
+                text: item[44],
+                alignment: 'center'
+              },
+              { 
+                text: item[45],
+                alignment: 'center'
+              },
+              { 
+                text: item[46],alignment: 'center' 
+              },
+              { text: item[47],alignment: 'center' },
+              { text: item[48],alignment: 'center' },
+              { text: item[49],alignment: 'center' },
+              { text: item[50],alignment: 'center' },
+              { text: item[115],alignment: 'center' },
+              { text: item[116],alignment: 'center' },
+              { text: item[117],alignment: 'center' },
+              { text: item[118],alignment: 'center' },
+              { text: item[119],alignment: 'center' },
+              { text: item[120],alignment: 'center' },
+              { text: item[121],alignment: 'center' },
+              { text: item[122],alignment: 'center' },
+              { text: item[123],alignment: 'center' },
+              { text: item[137],alignment: 'center' },
+              "",
+              { text: item[155],alignment: 'center' },
+              { text: item[156],alignment: 'center' },
+              { text: item[157],alignment: 'center' },
+              { text: item[158],alignment: 'center' },
+              { text: item[159],alignment: 'center' },
+              { text: item[160] }
+        ]
+        tableRows.push(rowPsychiatry); 
+      } 
+
+      if (item[2] === 'งานห้องคลอด') {
+        const rowLR = [
+          { text: index+1,alignment: 'center'
+          },
+              { text: item[2]
+                
+              },
+              { 
+                text: item[42],
+                alignment: 'center'
+              },
+              { 
+                text: item[43],
+                alignment: 'center'
+              },
+              { 
+                text: item[44],
+                alignment: 'center'
+              },
+              { 
+                text: item[45],
+                alignment: 'center'
+              },
+              { 
+                text: item[46],alignment: 'center' 
+              },
+              { text: item[47],alignment: 'center' },
+              { text: item[48],alignment: 'center' },
+              { text: item[49],alignment: 'center' },
+              { text: item[50],alignment: 'center' },
+              { text: item[115],alignment: 'center' },
+              { text: item[116],alignment: 'center' },
+              { text: item[117],alignment: 'center' },
+              { text: item[118],alignment: 'center' },
+              { text: item[119],alignment: 'center' },
+              { text: item[120],alignment: 'center' },
+              { text: item[121],alignment: 'center' },
+              { text: item[122],alignment: 'center' },
+              { text: item[123],alignment: 'center' },
+              { text: item[137],alignment: 'center' },
+              "",
+              { text: item[155],alignment: 'center' },
+              { text: item[156],alignment: 'center' },
+              { text: item[157],alignment: 'center' },
+              { text: item[158],alignment: 'center' },
+              { text: item[159],alignment: 'center' },
+              { text: item[160] }
+        ]
+        tableRows.push(rowLR); 
+      } 
+
+      if (item[2] === 'หอผู้ป่วยสุขใจ') {
+        const rowHappyHeart = [
+          { text: index+1,alignment: 'center'
+          },
+              { text: item[2]
+                
+              },
+              { 
+                text: item[42],
+                alignment: 'center'
+              },
+              { 
+                text: item[43],
+                alignment: 'center'
+              },
+              { 
+                text: item[44],
+                alignment: 'center'
+              },
+              { 
+                text: item[45],
+                alignment: 'center'
+              },
+              { 
+                text: item[46],alignment: 'center' 
+              },
+              { text: item[47],alignment: 'center' },
+              { text: item[48],alignment: 'center' },
+              { text: item[49],alignment: 'center' },
+              { text: item[50],alignment: 'center' },
+              { text: item[115],alignment: 'center' },
+              { text: item[116],alignment: 'center' },
+              { text: item[117],alignment: 'center' },
+              { text: item[118],alignment: 'center' },
+              { text: item[119],alignment: 'center' },
+              { text: item[120],alignment: 'center' },
+              { text: item[121],alignment: 'center' },
+              { text: item[122],alignment: 'center' },
+              { text: item[123],alignment: 'center' },
+              { text: item[137],alignment: 'center' },
+              "",
+              { text: item[155],alignment: 'center' },
+              { text: item[156],alignment: 'center' },
+              { text: item[157],alignment: 'center' },
+              { text: item[158],alignment: 'center' },
+              { text: item[159],alignment: 'center' },
+              { text: item[160] }
+        ]
+        tableRows.push(rowHappyHeart); 
+      } 
+
+      if (item[2] === 'พิเศษอายุรกรรม ชั้น2 (อาคาร75ปี)') {
+        const rowSPmed = [
+          { text: index+1,alignment: 'center'
+          },
+              { text: item[2]
+                
+              },
+              { 
+                text: item[28],
+                alignment: 'center'
+              },
+              { 
+                text: item[29],
+                alignment: 'center'
+              },
+              { 
+                text: item[30],
+                alignment: 'center'
+              },
+              { 
+                text: item[31],
+                alignment: 'center'
+              },
+              { 
+                text: item[32],alignment: 'center' 
+              },
+              { text: "",alignment: 'center' },
+              { text: "",alignment: 'center' },
+              { text: "",alignment: 'center' },
+              { text: "",alignment: 'center' },
+              { text: item[98],alignment: 'center' },
+              { text: item[99],alignment: 'center' },
+              { text: item[100],alignment: 'center' },
+              { text: item[101],alignment: 'center' },
+              { text: item[102],alignment: 'center' },
+              { text: item[103],alignment: 'center' },
+              { text: item[104],alignment: 'center' },
+              { text: item[105],alignment: 'center' },
+              { text: item[106],alignment: 'center' },
+              { text: item[135],alignment: 'center' },
+              { text: item[136],alignment: 'center' },
+              { text: item[155],alignment: 'center' },
+              { text: item[156],alignment: 'center' },
+              { text: item[157],alignment: 'center' },
+              { text: item[158],alignment: 'center' },
+              { text: item[159],alignment: 'center' },
+              { text: item[160] }
+        ]
+        tableRows.push(rowSPmed); 
+      } 
+
+      if (item[2] === 'หอผู้ป่วยศัลยกรรมชาย') {
+        const newRowMaleSurgicalWard = [
+          [
+          { text: index+1,alignment: 'center'
+          },
+              { text: item[2]
+                
+              },
+              { 
+                text: item[13],alignment: 'center'
+              },
+              { 
+                text: item[14] ,alignment: 'center'
+              },
+              { 
+                text: item[15],
+                alignment: 'center'
+              },
+              { 
+                text: item[16],
+                alignment: 'center'
+              },
+              { 
+                text: item[17],alignment: 'center' 
+              },
+              { text: "",alignment: 'center' },
+              { text: "",alignment: 'center' },
+              { text: "",alignment: 'center' },
+              { text: "",alignment: 'center' },
+              { text: item[69],alignment: 'center' },
+              { text: item[70],alignment: 'center' },
+              { text: item[71],alignment: 'center' },
+              { text: item[72],alignment: 'center' },
+              { text: item[73],alignment: 'center' },
+              { text: item[74],alignment: 'center' },
+              { text: item[75],alignment: 'center' },
+              { text: item[76],alignment: 'center' },
+              { text: item[77],alignment: 'center' },
+              { text: item[127],alignment: 'center' },
+              { text: item[128],alignment: 'center' },
+              { text: item[155],alignment: 'center' },
+              { text: item[156],alignment: 'center' },
+              { text: item[157],alignment: 'center' },
+              { text: item[158],alignment: 'center' },
+              { text: item[159],alignment: 'center' },
+              { text: item[160] }
+        ],
+        [
+          { text: ""
+          },
+              { text: ""
+                
+              },
+              { 
+                text: item[33],alignment: 'center'
+              },
+              { 
+                text: item[34] ,alignment: 'center'
+              },
+              { 
+                text: item[35],
+                alignment: 'center'
+              },
+              { 
+                text: item[36],
+                alignment: 'center'
+              },
+              { 
+                text: item[37],alignment: 'center' 
+              },
+              { text: item[38],alignment: 'center' },
+              { text: item[39],alignment: 'center' },
+              { text: item[40],alignment: 'center' },
+              { text: item[41],alignment: 'center' },
+              { text: item[113],alignment: 'center' },
+              { text: item[114],alignment: 'center' },
+              { text: item[115],alignment: 'center' },
+              { text: item[116],alignment: 'center' },
+              { text: item[117],alignment: 'center' },
+              { text: item[118],alignment: 'center' },
+              { text: item[119],alignment: 'center' },
+              { text: item[120],alignment: 'center' },
+              { text: item[121],alignment: 'center' },
+              { text: item[137],alignment: 'center' },
+              "",
+              { text: item[155],alignment: 'center' },
+              { text: item[156],alignment: 'center' },
+              { text: item[157],alignment: 'center' },
+              { text: item[158],alignment: 'center' },
+              { text: item[159],alignment: 'center' },
+              { text: item[160] }
+          ]
+        ];
+        tableRows.push(...newRowMaleSurgicalWard); 
       } 
       
       if (item[2] === 'หอผู้ป่วยศัลยกรรมกระดูก') {
         const newRowOrthopedicSurgicalWard = [
-          { text: "",
-          },
-              { text: "Orthopedic Surgical Ward New Line"
-                
-              },
-              { 
-                text: item[2] ==='พิเศษอายุรกรรม ชั้น2 (อาคาร75ปี)' ? item[42] : item[28]
-              },
-              { 
-                text: "" 
-              },
-              { 
-                text: item[44],
-                alignment: 'center'
-              },
-              { 
-                text: item[45],
-                alignment: 'center'
-              },
-              { 
-                text: item[46],alignment: 'center' 
-              },
-              { text: item[47],alignment: 'center' },
-              { text: item[48],alignment: 'center' },
-              { text: item[49],alignment: 'center' },
-              { text: item[50],alignment: 'center' },
-              { text: item[115],alignment: 'center' },
-              { text: item[116],alignment: 'center' },
-              { text: item[117],alignment: 'center' },
-              { text: item[118],alignment: 'center' },
-              { text: item[119],alignment: 'center' },
-              { text: item[120],alignment: 'center' },
-              { text: item[121],alignment: 'center' },
-              { text: item[122],alignment: 'center' },
-              { text: item[123],alignment: 'center' },
-              { text: item[137],alignment: 'center' },
-              "",
-              { text: item[155],alignment: 'center' },
-              { text: item[156],alignment: 'center' },
-              { text: item[157],alignment: 'center' },
-              { text: item[158],alignment: 'center' },
-              { text: item[159],alignment: 'center' },
-              { text: item[160] }
-        ]
-        tableRows.push(newRowOrthopedicSurgicalWard); 
+          [
+            { text: index+1,alignment: 'center'
+            },
+                { text: item[2]
+                  
+                },
+                { 
+                  text: item[13],alignment: 'center'
+                },
+                { 
+                  text: item[14] ,alignment: 'center'
+                },
+                { 
+                  text: item[15],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[16],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[17],alignment: 'center' 
+                },
+                { text: "",alignment: 'center' },
+                { text: "",alignment: 'center' },
+                { text: "",alignment: 'center' },
+                { text: "",alignment: 'center' },
+                { text: item[69],alignment: 'center' },
+                { text: item[70],alignment: 'center' },
+                { text: item[71],alignment: 'center' },
+                { text: item[72],alignment: 'center' },
+                { text: item[73],alignment: 'center' },
+                { text: item[74],alignment: 'center' },
+                { text: item[75],alignment: 'center' },
+                { text: item[76],alignment: 'center' },
+                { text: item[77],alignment: 'center' },
+                { text: item[127],alignment: 'center' },
+                { text: item[128],alignment: 'center' },
+                { text: item[155],alignment: 'center' },
+                { text: item[156],alignment: 'center' },
+                { text: item[157],alignment: 'center' },
+                { text: item[158],alignment: 'center' },
+                { text: item[159],alignment: 'center' },
+                { text: item[160] }
+          ],
+          [
+            { text: ""
+            },
+                { text: ""
+                  
+                },
+                { 
+                  text: item[33],alignment: 'center'
+                },
+                { 
+                  text: item[34] ,alignment: 'center'
+                },
+                { 
+                  text: item[35],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[36],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[37],alignment: 'center' 
+                },
+                { text: item[38],alignment: 'center' },
+                { text: item[39],alignment: 'center' },
+                { text: item[40],alignment: 'center' },
+                { text: item[41],alignment: 'center' },
+                { text: item[113],alignment: 'center' },
+                { text: item[114],alignment: 'center' },
+                { text: item[115],alignment: 'center' },
+                { text: item[116],alignment: 'center' },
+                { text: item[117],alignment: 'center' },
+                { text: item[118],alignment: 'center' },
+                { text: item[119],alignment: 'center' },
+                { text: item[120],alignment: 'center' },
+                { text: item[121],alignment: 'center' },
+                { text: item[137],alignment: 'center' },
+                "",
+                { text: item[155],alignment: 'center' },
+                { text: item[156],alignment: 'center' },
+                { text: item[157],alignment: 'center' },
+                { text: item[158],alignment: 'center' },
+                { text: item[159],alignment: 'center' },
+                { text: item[160] }
+            ]
+      ]
+        tableRows.push(...newRowOrthopedicSurgicalWard); 
       }
 
       if (item[2] === 'หอผู้ป่วยตาหูคอจมูก') {
         const newRowENTWard = [
-          { text: "",
-          },
-              { text: "ENT Ward New Line"
-                
-              },
-              { 
-                text: item[2] ==='พิเศษอายุรกรรม ชั้น2 (อาคาร75ปี)' ? item[42] : item[28]
-              },
-              { 
-                text: "" 
-              },
-              { 
-                text: item[44],
-                alignment: 'center'
-              },
-              { 
-                text: item[45],
-                alignment: 'center'
-              },
-              { 
-                text: item[46],alignment: 'center' 
-              },
-              { text: item[47],alignment: 'center' },
-              { text: item[48],alignment: 'center' },
-              { text: item[49],alignment: 'center' },
-              { text: item[50],alignment: 'center' },
-              { text: item[115],alignment: 'center' },
-              { text: item[116],alignment: 'center' },
-              { text: item[117],alignment: 'center' },
-              { text: item[118],alignment: 'center' },
-              { text: item[119],alignment: 'center' },
-              { text: item[120],alignment: 'center' },
-              { text: item[121],alignment: 'center' },
-              { text: item[122],alignment: 'center' },
-              { text: item[123],alignment: 'center' },
-              { text: item[137],alignment: 'center' },
-              "",
-              { text: item[155],alignment: 'center' },
-              { text: item[156],alignment: 'center' },
-              { text: item[157],alignment: 'center' },
-              { text: item[158],alignment: 'center' },
-              { text: item[159],alignment: 'center' },
-              { text: item[160] }
+          [
+            { text: index+1,alignment: 'center'
+            },
+                { text: item[2]
+                  
+                },
+                { 
+                  text: item[13],alignment: 'center'
+                },
+                { 
+                  text: item[14] ,alignment: 'center'
+                },
+                { 
+                  text: item[15],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[16],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[17],alignment: 'center' 
+                },
+                { text: "",alignment: 'center' },
+                { text: "",alignment: 'center' },
+                { text: "",alignment: 'center' },
+                { text: "",alignment: 'center' },
+                { text: item[69],alignment: 'center' },
+                { text: item[70],alignment: 'center' },
+                { text: item[71],alignment: 'center' },
+                { text: item[72],alignment: 'center' },
+                { text: item[73],alignment: 'center' },
+                { text: item[74],alignment: 'center' },
+                { text: item[75],alignment: 'center' },
+                { text: item[76],alignment: 'center' },
+                { text: item[77],alignment: 'center' },
+                { text: item[127],alignment: 'center' },
+                { text: item[128],alignment: 'center' },
+                { text: item[155],alignment: 'center' },
+                { text: item[156],alignment: 'center' },
+                { text: item[157],alignment: 'center' },
+                { text: item[158],alignment: 'center' },
+                { text: item[159],alignment: 'center' },
+                { text: item[160] }
+          ],
+          [
+            { text: ""
+            },
+                { text: ""
+                  
+                },
+                { 
+                  text: item[33],alignment: 'center'
+                },
+                { 
+                  text: item[34] ,alignment: 'center'
+                },
+                { 
+                  text: item[35],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[36],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[37],alignment: 'center' 
+                },
+                { text: item[38],alignment: 'center' },
+                { text: item[39],alignment: 'center' },
+                { text: item[40],alignment: 'center' },
+                { text: item[41],alignment: 'center' },
+                { text: item[113],alignment: 'center' },
+                { text: item[114],alignment: 'center' },
+                { text: item[115],alignment: 'center' },
+                { text: item[116],alignment: 'center' },
+                { text: item[117],alignment: 'center' },
+                { text: item[118],alignment: 'center' },
+                { text: item[119],alignment: 'center' },
+                { text: item[120],alignment: 'center' },
+                { text: item[121],alignment: 'center' },
+                { text: item[137],alignment: 'center' },
+                "",
+                { text: item[155],alignment: 'center' },
+                { text: item[156],alignment: 'center' },
+                { text: item[157],alignment: 'center' },
+                { text: item[158],alignment: 'center' },
+                { text: item[159],alignment: 'center' },
+                { text: item[160] }
+            ]
         ]
-        tableRows.push(newRowENTWard); 
+        tableRows.push(...newRowENTWard); 
       }
 
       if (item[2] === 'หอผู้ป่วยสูตินรีเวชกรรม') {
         const newRowObstetricGynecologyWard = [
-          { text: "",
-          },
-              { text: "ENT Ward New Line"
-                
-              },
-              { 
-                text: item[2] ==='พิเศษอายุรกรรม ชั้น2 (อาคาร75ปี)' ? item[42] : item[28]
-              },
-              { 
-                text: "" 
-              },
-              { 
-                text: item[44],
-                alignment: 'center'
-              },
-              { 
-                text: item[45],
-                alignment: 'center'
-              },
-              { 
-                text: item[46],alignment: 'center' 
-              },
-              { text: item[47],alignment: 'center' },
-              { text: item[48],alignment: 'center' },
-              { text: item[49],alignment: 'center' },
-              { text: item[50],alignment: 'center' },
-              { text: item[115],alignment: 'center' },
-              { text: item[116],alignment: 'center' },
-              { text: item[117],alignment: 'center' },
-              { text: item[118],alignment: 'center' },
-              { text: item[119],alignment: 'center' },
-              { text: item[120],alignment: 'center' },
-              { text: item[121],alignment: 'center' },
-              { text: item[122],alignment: 'center' },
-              { text: item[123],alignment: 'center' },
-              { text: item[137],alignment: 'center' },
-              "",
-              { text: item[155],alignment: 'center' },
-              { text: item[156],alignment: 'center' },
-              { text: item[157],alignment: 'center' },
-              { text: item[158],alignment: 'center' },
-              { text: item[159],alignment: 'center' },
-              { text: item[160] }
-        ]
-        tableRows.push(newRowObstetricGynecologyWard); 
+          [
+            { text: index+1,alignment: 'center'
+            },
+                { text: item[2]
+                  
+                },
+                { 
+                  text: item[13],alignment: 'center'
+                },
+                { 
+                  text: item[14] ,alignment: 'center'
+                },
+                { 
+                  text: item[15],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[16],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[17],alignment: 'center' 
+                },
+                { text: "",alignment: 'center' },
+                { text: "",alignment: 'center' },
+                { text: "",alignment: 'center' },
+                { text: "",alignment: 'center' },
+                { text: item[69],alignment: 'center' },
+                { text: item[70],alignment: 'center' },
+                { text: item[71],alignment: 'center' },
+                { text: item[72],alignment: 'center' },
+                { text: item[73],alignment: 'center' },
+                { text: item[74],alignment: 'center' },
+                { text: item[75],alignment: 'center' },
+                { text: item[76],alignment: 'center' },
+                { text: item[77],alignment: 'center' },
+                { text: item[127],alignment: 'center' },
+                { text: item[128],alignment: 'center' },
+                { text: item[155],alignment: 'center' },
+                { text: item[156],alignment: 'center' },
+                { text: item[157],alignment: 'center' },
+                { text: item[158],alignment: 'center' },
+                { text: item[159],alignment: 'center' },
+                { text: item[160] }
+          ],
+          [
+            { text: ""
+            },
+                { text: ""
+                  
+                },
+                { 
+                  text: item[33],alignment: 'center'
+                },
+                { 
+                  text: item[34] ,alignment: 'center'
+                },
+                { 
+                  text: item[35],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[36],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[37],alignment: 'center' 
+                },
+                { text: item[38],alignment: 'center' },
+                { text: item[39],alignment: 'center' },
+                { text: item[40],alignment: 'center' },
+                { text: item[41],alignment: 'center' },
+                { text: item[113],alignment: 'center' },
+                { text: item[114],alignment: 'center' },
+                { text: item[115],alignment: 'center' },
+                { text: item[116],alignment: 'center' },
+                { text: item[117],alignment: 'center' },
+                { text: item[118],alignment: 'center' },
+                { text: item[119],alignment: 'center' },
+                { text: item[120],alignment: 'center' },
+                { text: item[121],alignment: 'center' },
+                { text: item[137],alignment: 'center' },
+                "",
+                { text: item[155],alignment: 'center' },
+                { text: item[156],alignment: 'center' },
+                { text: item[157],alignment: 'center' },
+                { text: item[158],alignment: 'center' },
+                { text: item[159],alignment: 'center' },
+                { text: item[160] }
+            ]
+      ]
+        tableRows.push(...newRowObstetricGynecologyWard); 
+      }
+
+      if (item[2] === 'หอผู้ป่วยกุมารเวชกรรม') {
+        const newRowBabyWard = [
+          [
+            { text: index+1,alignment: 'center'
+            },
+                { text: item[2]
+                  
+                },
+                { 
+                  text: item[13],alignment: 'center'
+                },
+                { 
+                  text: item[14] ,alignment: 'center'
+                },
+                { 
+                  text: item[15],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[16],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[17],alignment: 'center' 
+                },
+                { text: "",alignment: 'center' },
+                { text: "",alignment: 'center' },
+                { text: "",alignment: 'center' },
+                { text: "",alignment: 'center' },
+                { text: item[69],alignment: 'center' },
+                { text: item[70],alignment: 'center' },
+                { text: item[71],alignment: 'center' },
+                { text: item[72],alignment: 'center' },
+                { text: item[73],alignment: 'center' },
+                { text: item[74],alignment: 'center' },
+                { text: item[75],alignment: 'center' },
+                { text: item[76],alignment: 'center' },
+                { text: item[77],alignment: 'center' },
+                { text: item[127],alignment: 'center' },
+                { text: item[128],alignment: 'center' },
+                { text: item[155],alignment: 'center' },
+                { text: item[156],alignment: 'center' },
+                { text: item[157],alignment: 'center' },
+                { text: item[158],alignment: 'center' },
+                { text: item[159],alignment: 'center' },
+                { text: item[160] }
+          ],
+          [
+            { text: ""
+            },
+                { text: ""
+                  
+                },
+                { 
+                  text: item[33],alignment: 'center'
+                },
+                { 
+                  text: item[34] ,alignment: 'center'
+                },
+                { 
+                  text: item[35],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[36],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[37],alignment: 'center' 
+                },
+                { text: item[38],alignment: 'center' },
+                { text: item[39],alignment: 'center' },
+                { text: item[40],alignment: 'center' },
+                { text: item[41],alignment: 'center' },
+                { text: item[113],alignment: 'center' },
+                { text: item[114],alignment: 'center' },
+                { text: item[115],alignment: 'center' },
+                { text: item[116],alignment: 'center' },
+                { text: item[117],alignment: 'center' },
+                { text: item[118],alignment: 'center' },
+                { text: item[119],alignment: 'center' },
+                { text: item[120],alignment: 'center' },
+                { text: item[121],alignment: 'center' },
+                { text: item[137],alignment: 'center' },
+                "",
+                { text: item[155],alignment: 'center' },
+                { text: item[156],alignment: 'center' },
+                { text: item[157],alignment: 'center' },
+                { text: item[158],alignment: 'center' },
+                { text: item[159],alignment: 'center' },
+                { text: item[160] }
+            ]
+      ]
+        tableRows.push(...newRowBabyWard); 
       }
 
       if (item[2] === 'หอผู้ป่วยพระสงฆ์ ชั้น 6 (อาคาร75ปี)') {
-        const newRowMonkWard = [
+        const newRowMonkWard = [ 
+          [
+            { text: index+1,alignment: 'center'
+            },
+                { text: item[2]
+                  
+                },
+                { 
+                  text: item[3],alignment: 'center'
+                },
+                { 
+                  text: item[4],alignment: 'center'
+                },
+                { 
+                  text: item[5],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[6],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[7],alignment: 'center' 
+                },
+                { text: "",alignment: 'center' },
+                { text: "",alignment: 'center' },
+                { text: "",alignment: 'center' },
+                { text: "",alignment: 'center' },
+                { text: item[51],alignment: 'center' },
+                { text: item[52],alignment: 'center' },
+                { text: item[53],alignment: 'center' },
+                { text: item[54],alignment: 'center' },
+                { text: item[55],alignment: 'center' },
+                { text: item[56],alignment: 'center' },
+                { text: item[57],alignment: 'center' },
+                { text: item[58],alignment: 'center' },
+                { text: item[59],alignment: 'center' },
+                { text: item[123],alignment: 'center' },
+                { text: item[124],alignment: 'center' },
+                { text: item[155],alignment: 'center' },
+                { text: item[156],alignment: 'center' },
+                { text: item[157],alignment: 'center' },
+                { text: item[158],alignment: 'center' },
+                { text: item[159],alignment: 'center' },
+                { text: item[160] }
+          ],
+          
+          [
           { text: "",
           },
-              { text: "Monk Ward New Line"
+              { text: ""
                 
               },
               { 
-                text: item[2] ==='พิเศษอายุรกรรม ชั้น2 (อาคาร75ปี)' ? item[42] : item[28]
+                text: item[8],alignment: 'center'
               },
               { 
-                text: "" 
+                text:item[9],alignment: 'center'
               },
               { 
-                text: item[44],
+                text: item[10],
                 alignment: 'center'
               },
               { 
-                text: item[45],
+                text: item[11],
                 alignment: 'center'
               },
               { 
-                text: item[46],alignment: 'center' 
+                text: item[12],alignment: 'center' 
               },
-              { text: item[47],alignment: 'center' },
-              { text: item[48],alignment: 'center' },
-              { text: item[49],alignment: 'center' },
-              { text: item[50],alignment: 'center' },
-              { text: item[115],alignment: 'center' },
-              { text: item[116],alignment: 'center' },
-              { text: item[117],alignment: 'center' },
-              { text: item[118],alignment: 'center' },
-              { text: item[119],alignment: 'center' },
-              { text: item[120],alignment: 'center' },
-              { text: item[121],alignment: 'center' },
-              { text: item[122],alignment: 'center' },
-              { text: item[123],alignment: 'center' },
-              { text: item[137],alignment: 'center' },
-              "",
+              { text: "",alignment: 'center' },
+              { text: "",alignment: 'center' },
+              { text: "",alignment: 'center' },
+              { text: "",alignment: 'center' },
+              { text: item[60],alignment: 'center' },
+              { text: item[61],alignment: 'center' },
+              { text: item[62],alignment: 'center' },
+              { text: item[63],alignment: 'center' },
+              { text: item[64],alignment: 'center' },
+              { text: item[65],alignment: 'center' },
+              { text: item[66],alignment: 'center' },
+              { text: item[67],alignment: 'center' },
+              { text: item[68],alignment: 'center' },
+              { text: item[125],alignment: 'center' },
+              { text: item[126],alignment: 'center' },
               { text: item[155],alignment: 'center' },
               { text: item[156],alignment: 'center' },
               { text: item[157],alignment: 'center' },
               { text: item[158],alignment: 'center' },
               { text: item[159],alignment: 'center' },
               { text: item[160] }
-        ]
-        tableRows.push(newRowMonkWard); 
+        ]]
+        tableRows.push(...newRowMonkWard); 
       }
 
       if (item[2] === 'หอผู้ป่วยพิเศษชั้น 6-7 อาคาร100ปีฯ') {
         const newRowSpecialWard = [
+          [
+            { text: index+1,alignment: 'center'
+            },
+                { text: item[2]
+                  
+                },
+                { 
+                  text: item[18],alignment: 'center'
+                },
+                { 
+                  text: item[19],alignment: 'center'
+                },
+                { 
+                  text: item[20],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[21],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[22],alignment: 'center' 
+                },
+                { text: "",alignment: 'center' },
+                { text: "",alignment: 'center' },
+                { text: "",alignment: 'center' },
+                { text: "",alignment: 'center' },
+                { text: item[78],alignment: 'center' },
+                { text: item[79],alignment: 'center' },
+                { text: item[80],alignment: 'center' },
+                { text: item[81],alignment: 'center' },
+                { text: item[82],alignment: 'center' },
+                { text: item[83],alignment: 'center' },
+                { text: item[84],alignment: 'center' },
+                { text: item[85],alignment: 'center' },
+                { text: item[86],alignment: 'center' },
+                { text: item[130],alignment: 'center' },
+                { text: item[131],alignment: 'center' },
+                { text: item[155],alignment: 'center' },
+                { text: item[156],alignment: 'center' },
+                { text: item[157],alignment: 'center' },
+                { text: item[158],alignment: 'center' },
+                { text: item[159],alignment: 'center' },
+                { text: item[160] }
+          ],
+          [
           { text: "",
           },
-              { text: "Special Ward New Line"
+              { text: ""
                 
               },
               { 
-                text: item[2] ==='พิเศษอายุรกรรม ชั้น2 (อาคาร75ปี)' ? item[42] : item[28]
+                text: item[23],alignment: 'center'
               },
               { 
-                text: "" 
+                text: item[24],alignment: 'center' 
               },
               { 
-                text: item[44],
+                text: item[25],
                 alignment: 'center'
               },
               { 
-                text: item[45],
+                text: item[26],
                 alignment: 'center'
               },
               { 
-                text: item[46],alignment: 'center' 
+                text: item[27],alignment: 'center' 
               },
-              { text: item[47],alignment: 'center' },
-              { text: item[48],alignment: 'center' },
-              { text: item[49],alignment: 'center' },
-              { text: item[50],alignment: 'center' },
-              { text: item[115],alignment: 'center' },
-              { text: item[116],alignment: 'center' },
-              { text: item[117],alignment: 'center' },
-              { text: item[118],alignment: 'center' },
-              { text: item[119],alignment: 'center' },
-              { text: item[120],alignment: 'center' },
-              { text: item[121],alignment: 'center' },
-              { text: item[122],alignment: 'center' },
-              { text: item[123],alignment: 'center' },
-              { text: item[137],alignment: 'center' },
-              "",
-              { text: item[155],alignment: 'center' },
-              { text: item[156],alignment: 'center' },
-              { text: item[157],alignment: 'center' },
-              { text: item[158],alignment: 'center' },
-              { text: item[159],alignment: 'center' },
-              { text: item[160] }
-        ]
-        tableRows.push(newRowSpecialWard); 
+              { text: "",alignment: 'center' },
+              { text: "",alignment: 'center' },
+              { text: "",alignment: 'center' },
+              { text: "",alignment: 'center' },
+              { text: item[87],alignment: 'center' },
+              { text: item[88],alignment: 'center' },
+              { text: item[89],alignment: 'center' },
+              { text: item[90],alignment: 'center' },
+              { text: item[91],alignment: 'center' },
+              { text: item[92],alignment: 'center' },
+              { text: item[93],alignment: 'center' },
+              { text: item[94],alignment: 'center' },
+              { text: item[95],alignment: 'center' },
+              { text: item[132],alignment: 'center' },
+              { text: item[133],alignment: 'center' },
+              { text: "",alignment: 'center' },
+              { text: "",alignment: 'center' },
+              { text: "",alignment: 'center' },
+              { text: "",alignment: 'center' },
+              { text: "",alignment: 'center' },
+              { text: "" }
+        ]]
+        tableRows.push(...newRowSpecialWard); 
       }
 
-    
+      if (item[2] === 'งานห้องผ่าตัด') {
+        const newRowOr = 
+          [
+            {text:index+1,alignment: 'center'},
+            {text:item[2]},
+            { text: item[138],alignment: 'center',margin: [0, 8, 0, 0] },
+            { text: item[155],alignment: 'center' },
+                { text: item[156],alignment: 'center' },
+                { text: item[157],alignment: 'center' },
+                { text: item[158],alignment: 'center' },
+                { text: item[159],alignment: 'center' },
+                { text: item[160],alignment: 'center' },
+          ]
   
+        tableOrRows.push(newRowOr); 
+      }
+
+      if (item[2] === 'งานวิสัญญีพยาบาล') {
+        const newRowAnes = [
+          {text:index+1,alignment: 'center'},
+          {text:item[2]},
+          { text: item[138],alignment: 'center',margin: [0, 8, 0, 0] },
+          { text: item[155],alignment: 'center' },
+          { text: item[156],alignment: 'center' },
+          { text: item[157],alignment: 'center' },
+          { text: item[158],alignment: 'center' },
+          { text: item[159],alignment: 'center' },
+          { text: item[160],alignment: 'center' },
+        ]
+        tableOrRows.push(newRowAnes); 
+      }
+
+      if (item[2] === 'SMC') {
+        const newRowSmc = [
+          {text: index+1,alignment: 'center'},
+          {text: item[2]},
+          { text: item[138],alignment: 'center' },
+          { text: item[139],alignment: 'center' },                
+          { text: item[140],alignment: 'center' },                
+          { text: item[141],alignment: 'center' },                
+          { text: item[142],alignment: 'center' },                
+          { text: item[143],alignment: 'center' },                
+          { text: item[144],alignment: 'center' },                
+          { text: item[145],alignment: 'center' },                
+          { text: item[146],alignment: 'center' },                
+          { text: item[155],alignment: 'center' },
+                { text: item[156],alignment: 'center' },
+                { text: item[157],alignment: 'center' },
+                { text: item[158],alignment: 'center' },
+                { text: item[159],alignment: 'center' },
+                { text: item[160],alignment: 'center' },
+        ]
+        tableSmcRows.push(newRowSmc); 
+      }
+
+      if (item[2] === 'งานอุบัติเหตุฉุกเฉิน') {
+        const newRowEms = 
+          [
+            {text : index+1,alignment: 'center'},
+            {text : item[2]},
+            { text: item[147],alignment: 'center' },
+            { text: item[148],alignment: 'center' },                
+            { text: item[149],alignment: 'center' },                
+            { text: item[150],alignment: 'center' },                
+            { text: item[151],alignment: 'center' },                
+            { text: item[152],alignment: 'center' },                
+            { text: item[153],alignment: 'center' },                
+            { text: item[154],alignment: 'center' },                
+            { text: item[161],alignment: 'center' },                
+            { text: item[155],alignment: 'center' },
+                { text: item[156],alignment: 'center' },
+                { text: item[157],alignment: 'center' },
+                { text: item[158],alignment: 'center' },
+                { text: item[159],alignment: 'center' },
+                { text: item[160],alignment: 'center' },
+          ]
+      
+        tableEmsRows.push(newRowEms); 
+      }
     });
 
     const docDefinition = {
@@ -493,7 +1471,7 @@ const handleShiftChange = (value:any) => {
       },
       content: [
         {
-          text: `แบบรายงานการนิเทศ\nผู้ตรวจการพยาบาล กลุ่มการพยาบาล โรงพยาบาลสมเด็จพระเจ้าตากสินมหาราช\nวันที่ ${selectedThaiDate} เวร เช้า`,
+          text: `แบบรายงานการนิเทศ\nผู้ตรวจการพยาบาล กลุ่มการพยาบาล โรงพยาบาลสมเด็จพระเจ้าตากสินมหาราช\nวันที่ ${formatThaiMonth} ${shiftName}`,
           fontSize: 15,
           alignment: 'center',  
           margin: [0, 0, 0, 10]
@@ -699,9 +1677,174 @@ const handleShiftChange = (value:any) => {
                 {  text: "AID",margin: [0, 5, 0, 0],alignment: 'center' },
                 "",
               ],
+              ...tableOrRows
             ],
           },
-        }
+        },
+        { text: '\n\n' },
+        {
+          style: "tableExample",
+          table: {
+            widths: [30,
+              70,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              80,
+           ],
+            body: [
+              [
+                {
+                  rowSpan: 2,
+                  text: "ลำดับที่",
+                  margin: [0, 20, 0, 0],
+                  alignment: "center",
+                },
+                {
+                  rowSpan: 2,
+                  text: "หน่วยงาน",
+                  alignment: "center",
+                  margin: [0, 20, 0, 0]
+                },
+
+                {
+                  colSpan: 9,
+                  alignment: "center",
+                  text: "ข้อมูลผู้ป่วย",
+                  margin: [0, 5, 0, 0]
+                },
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                { colSpan: 5, text: "จำนวนเจ้าหน้าที่\n(คน)",alignment: "center" },
+                "",
+                "",
+                "",
+                "",
+                { rowSpan: 2, text: "รายชื่อ\nหัวหน้าเวร",alignment: "center",margin: [0, 15, 0, 0] }, 
+              ],
+
+              [
+                "",
+                "",
+                { text: "Med+ID",alignment: 'center',margin: [0, 8, 0, 0] },
+                { text: "Surg",alignment: 'center',margin: [0, 8, 0, 0] },                
+                { text: "Ortho",alignment: 'center',margin: [0, 8, 0, 0] },                
+                { text: "EYE",alignment: 'center',margin: [0, 8, 0, 0] },                
+                { text: "Uro",alignment: 'center',margin: [0, 8, 0, 0] },                
+                { text: "เวชศาสตร์",alignment: 'center',margin: [0, 8, 0, 0] },                
+                { text: "Ped",alignment: 'center',margin: [0, 8, 0, 0] },                
+                { text: "U/S,CT",alignment: 'center',margin: [0, 8, 0, 0] },                
+                { text: "อื่นๆ",alignment: 'center',margin: [0, 8, 0, 0] },                
+                {  text: "RN",margin: [0, 8, 0, 0],alignment: 'center' },
+                {  text: "Para",margin: [0, 8, 0, 0],alignment: 'center' },
+                {  text: "TN/PN",margin: [0, 8, 0, 0],alignment: 'center' },
+                {  text: "EMT",margin: [0, 8, 0, 0],alignment: 'center' },
+                {  text: "AID",margin: [0, 8, 0, 0],alignment: 'center' },
+                "",
+              ],
+              ...tableSmcRows
+            ],
+          },
+        },
+        { text: '\n\n' },
+        {
+          style: "tableExample",
+          table: {
+            widths: [30,
+              70,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              80,
+           ],
+            body: [
+              [
+                {
+                  rowSpan: 2,
+                  text: "ลำดับที่",
+                  margin: [0, 20, 0, 0],
+                  alignment: "center",
+                },
+                {
+                  rowSpan: 2,
+                  text: "หน่วยงาน",
+                  alignment: "center",
+                  margin: [0, 20, 0, 0]
+                },
+
+                {
+                  colSpan: 9,
+                  alignment: "center",
+                  text: "ข้อมูลผู้ป่วย",
+                  margin: [0, 5, 0, 0]
+                },
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                { colSpan: 5, text: "จำนวนเจ้าหน้าที่\n(คน)",alignment: "center" },
+                "",
+                "",
+                "",
+                "",
+                { rowSpan: 2, text: "รายชื่อ\nหัวหน้าเวร",alignment: "center",margin: [0, 15, 0, 0] }, 
+              ],
+
+              [
+                "",
+                "",
+                { text: "R",alignment: 'center',margin: [0, 8, 0, 0] },
+                { text: "E",alignment: 'center',margin: [0, 8, 0, 0] },                
+                { text: "U",alignment: 'center',margin: [0, 8, 0, 0] },                
+                { text: "S",alignment: 'center',margin: [0, 8, 0, 0] },                
+                { text: "N",alignment: 'center',margin: [0, 8, 0, 0] },                
+                { text: "ออก EMS",alignment: 'center',margin: [0, 8, 0, 0] },                
+                { text: "รับ Refer",alignment: 'center',margin: [0, 8, 0, 0] },                
+                { text: "ส่ง Refer",alignment: 'center',margin: [0, 8, 0, 0] },                
+                { text: "คง\nพยาบาล",alignment: 'center',margin: [0, 3, 0, 0] },                
+                {  text: "RN",margin: [0, 8, 0, 0],alignment: 'center' },
+                {  text: "Para",margin: [0, 8, 0, 0],alignment: 'center' },
+                {  text: "TN/PN",margin: [0, 8, 0, 0],alignment: 'center' },
+                {  text: "EMT",margin: [0, 8, 0, 0],alignment: 'center' },
+                {  text: "AID",margin: [0, 8, 0, 0],alignment: 'center' },
+                "",
+              ],
+              ...tableEmsRows
+            ],
+          },
+        },
       ],
     };
     pdfMake.createPdf(docDefinition).open();

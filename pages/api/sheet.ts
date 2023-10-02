@@ -15,13 +15,13 @@ function convertNumberToText(number: number) {
   const num = parseInt(number.toString(), 10);
   switch (num) {
     case 1:
-      return "เช้า";
-    case 2:
-      return "บ่าย";
-    case 3:
       return "ดึก";
+    case 2:
+      return "เช้า";
+    case 3:
+      return "บ่าย";
     default:
-      return "Invalid number";
+      return "All";
   }
 }
 
