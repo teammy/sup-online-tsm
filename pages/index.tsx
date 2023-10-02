@@ -1872,7 +1872,6 @@ const handleShiftChange = (value:any) => {
         </SelectTrigger>
         <SelectContent className="bg-white">
           <SelectGroup>
-          <SelectItem value="all">ทุกเวร</SelectItem>
             <SelectItem value="1">เวรดึก</SelectItem>
             <SelectItem value="2">เวรเช้า</SelectItem>
             <SelectItem value="3">เวรบ่าย</SelectItem>
