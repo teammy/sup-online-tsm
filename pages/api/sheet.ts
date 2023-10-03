@@ -33,7 +33,7 @@ export default function handler(req: any, res: any) {
   try {
     const client = new google.auth.JWT(
       keys.client_email,
-      null,
+      undefined,
       keys.private_key,
       ["https://www.googleapis.com/auth/spreadsheets"]
     );

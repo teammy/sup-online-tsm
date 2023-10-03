@@ -58,7 +58,7 @@ if (Number(selectedShift) === 1) {
 
 
 
-  const formatThaiMonth = dayjs(selectedDate, { buddhistEra: true }).format('D MMMM BBBB', { buddhistEra: true });
+  const formatThaiMonth = dayjs(selectedDate).format('D MMMM BBBB');
 
   const handleSelectChange = (e: any) => {
     setSelectedShift(e);
@@ -1847,7 +1847,102 @@ const handleShiftChange = (value:any) => {
         },
       ],
     };
-    pdfMake.createPdf(docDefinition).open();
+    pdfMake.createPdf({
+      pageSize: 'A4',
+      pageOrientation: 'portrait',
+      defaultStyle: {
+        font: 'THSarabunNew',
+        fontSize: 16,
+      },
+      content: [
+        {
+          text: 'รายงานการเข้ารับบริการ',
+          fontSize: 20,
+          alignment: 'center',
+          margin: [0, 0, 0, 20],
+        },
+        {
+          style: "tableExample",
+          table: {
+            widths: [30,
+              70,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              30,
+              80,
+            ],
+            body: [
+              [
+                {
+                  rowSpan: 2,
+                  text: "ลำดับที่",
+                  margin: [0, 20, 0, 0],
+                  alignment: "center",
+                },
+                {
+                  rowSpan: 2,
+                  text: "หน่วยงาน",
+                  alignment: "center",
+                  margin: [0, 20, 0, 0]
+                },
+
+                {
+                  colSpan: 9,
+                  alignment: "center",
+                  text: "ข้อมูลผู้ป่วย",
+                  margin: [0, 5, 0, 0]
+                },
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                { colSpan: 5, text: "จำนวนเจ้าหน้าที่\n(คน)",alignment: "center" },
+                "",
+                "",
+                "",
+                "",
+                { rowSpan: 2, text: "รายชื่อ\nหัวหน้าเวร",alignment: "center",margin: [0, 15, 0, 0] }, 
+              ],
+
+              [
+                "",
+                "",
+                { text: "R",alignment: 'center',margin: [0, 8, 0, 0] },
+                { text: "E",alignment: 'center',margin: [0, 8, 0, 0] },                
+                { text: "U",alignment: 'center',margin: [0, 8, 0, 0] },                
+                { text: "S",alignment: 'center',margin: [0, 8, 0, 0] },                
+                { text: "N",alignment: 'center',margin: [0, 8, 0, 0] },                
+                { text: "ออก EMS",alignment: 'center',margin: [0, 8, 0, 0] },                
+                { text: "รับ Refer",alignment: 'center',margin: [0, 8, 0, 0] },                
+                { text: "ส่ง Refer",alignment: 'center',margin: [0, 8, 0, 0] },                
+                { text: "คง\nพยาบาล",alignment: 'center',margin: [0, 3, 0, 0] },                
+                {  text: "RN",margin: [0, 8, 0, 0],alignment: 'center' },
+                {  text: "Para",margin: [0, 8, 0, 0],alignment: 'center' },
+                {  text: "TN/PN",margin: [0, 8, 0, 0],alignment: 'center' },
+                {  text: "EMT",margin: [0, 8, 0, 0],alignment: 'center' },
+                {  text: "AID",margin: [0, 8, 0, 0],alignment: 'center' },
+                "",
+              ],
+            ],
+          },
+        },
+      ],
+    }).open();
   };
 
   return <>
