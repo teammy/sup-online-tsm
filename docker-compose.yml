@@ -3,9 +3,19 @@ version: '3.7'
 services:
   web:
     container_name: sup-online-web
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: always
     environment:
       - NODE_ENV=production
     ports:
       - "3335:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    networks:
+      - sup-online-network
+
+networks:
+  sup-online-network:
