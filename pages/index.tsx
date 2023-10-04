@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
+import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import { clsx } from "clsx"
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import { Button } from "@/components/ui/button";
 var buddhistEra = require('dayjs/plugin/buddhistEra')
 import { IBM_Plex_Sans_Thai_Looped } from 'next/font/google';
+import Head from "next/head";
+
 const thaiFont = IBM_Plex_Sans_Thai_Looped({
   subsets: ['thai'],
   weight: "400"
@@ -1942,10 +1944,18 @@ const handleShiftChange = (value:any) => {
           },
         },
       ],
-    }).open();
+    },pdfFonts.pdfMake).open();
   };
 
   return <>
+  <div>
+
+
+
+
+
+
+
     <div className="flex w-full flex-wrap md:flex-nowrap gap-4 justify-center items-center">
   <div className="w-full md:w-1/2 mt-10 flex gap-4 justify-center items-center">
     <div>
@@ -1986,6 +1996,7 @@ const handleShiftChange = (value:any) => {
   </div>
 </div>
 <hr className="mt-4 w-full border-[#cfcfcf]" />
+</div>
   </>;
 }
 
