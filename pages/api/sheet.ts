@@ -54,14 +54,16 @@ export default function handler(req: any, res: any) {
       let data: any = await gsapi.spreadsheets.values.get(opt);
 
       const filterData = data.data.values.filter(
-          (item: any) => {
+        (item: any) => {
+            return (
+                item[0] === convertDate &&
+                item[1] === convertWorktime
+            );
+        }
+    );
+    
 
-              return (
-                  item[0] === convertDate &&
-                  item[1] === convertWorktime
-              );
-          }
-      );
+      console.log(filterData);
 
 
       return res.status(200).send(JSON.stringify({error: false, data: filterData}));
