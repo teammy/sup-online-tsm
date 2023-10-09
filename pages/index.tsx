@@ -83,7 +83,7 @@ const handleShiftChange = (value:any) => {
     async function fetchData() {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/sheet?sentDate=${selectedDate}&worktime=${selectedShift}`
+          `${process.env.NEXT_PUBLIC_URL_WEB}/api/sheet?sentDate=${selectedDate}&worktime=${selectedShift}`
         );
         const data = await response.json();
         setTableData(data.data);
