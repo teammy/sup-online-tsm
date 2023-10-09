@@ -143,16 +143,12 @@ const handleShiftChange = (value:any) => {
       console.log("tableRows", tableRows);
 
 
-      if (item[2] === 'MICU') {
+      if (item[3] === 'MICU') {
         const rowMicu = [
           { text: index+1,alignment: 'center'
           },
-              { text: item[2]
+              { text: item[3]
                 
-              },
-              { 
-                text: item[42],
-                alignment: 'center'
               },
               { 
                 text: item[43],
@@ -167,13 +163,16 @@ const handleShiftChange = (value:any) => {
                 alignment: 'center'
               },
               { 
-                text: item[46],alignment: 'center' 
+                text: item[46],
+                alignment: 'center'
               },
-              { text: item[47],alignment: 'center' },
+              { 
+                text: item[47],alignment: 'center' 
+              },
               { text: item[48],alignment: 'center' },
               { text: item[49],alignment: 'center' },
               { text: item[50],alignment: 'center' },
-              { text: item[114],alignment: 'center' },
+              { text: item[51],alignment: 'center' },
               { text: item[115],alignment: 'center' },
               { text: item[116],alignment: 'center' },
               { text: item[117],alignment: 'center' },
@@ -182,28 +181,25 @@ const handleShiftChange = (value:any) => {
               { text: item[120],alignment: 'center' },
               { text: item[121],alignment: 'center' },
               { text: item[122],alignment: 'center' },
-              { text: item[136],alignment: 'center' },
+              { text: item[123],alignment: 'center' },
+              { text: item[137],alignment: 'center' },
               "",
-              { text: item[155],alignment: 'center' },
               { text: item[156],alignment: 'center' },
               { text: item[157],alignment: 'center' },
               { text: item[158],alignment: 'center' },
               { text: item[159],alignment: 'center' },
-              { text: item[160] }
+              { text: item[160],alignment: 'center' },
+              { text: item[161] }
         ]
         tableRows.push(rowMicu); 
       } 
 
-      if (item[2] === 'SICU') {
+      if (item[3] === 'SICU') {
         const rowSicu = [
           { text: index+1,alignment: 'center'
           },
-              { text: item[2]
+              { text: item[3]
                 
-              },
-              { 
-                text: item[42],
-                alignment: 'center'
               },
               { 
                 text: item[43],
@@ -218,13 +214,16 @@ const handleShiftChange = (value:any) => {
                 alignment: 'center'
               },
               { 
-                text: item[46],alignment: 'center' 
+                text: item[46],
+                alignment: 'center'
               },
-              { text: item[47],alignment: 'center' },
+              { 
+                text: item[47],alignment: 'center' 
+              },
               { text: item[48],alignment: 'center' },
               { text: item[49],alignment: 'center' },
               { text: item[50],alignment: 'center' },
-              { text: item[114],alignment: 'center' },
+              { text: item[51],alignment: 'center' },
               { text: item[115],alignment: 'center' },
               { text: item[116],alignment: 'center' },
               { text: item[117],alignment: 'center' },
@@ -233,28 +232,25 @@ const handleShiftChange = (value:any) => {
               { text: item[120],alignment: 'center' },
               { text: item[121],alignment: 'center' },
               { text: item[122],alignment: 'center' },
-              { text: item[136],alignment: 'center' },
+              { text: item[123],alignment: 'center' },
+              { text: item[137],alignment: 'center' },
               "",
-              { text: item[155],alignment: 'center' },
               { text: item[156],alignment: 'center' },
               { text: item[157],alignment: 'center' },
               { text: item[158],alignment: 'center' },
               { text: item[159],alignment: 'center' },
-              { text: item[160] }
+              { text: item[160],alignment: 'center' },
+              { text: item[161] }
         ]
         tableRows.push(rowSicu); 
       } 
 
-      if (item[2] === 'SUB  ICU') {
+      if (item[3] === 'SUB  ICU') {
         const rowSubicu = [
           { text: index+1,alignment: 'center'
           },
-              { text: item[2]
+              { text: item[3]
                 
-              },
-              { 
-                text: item[42],
-                alignment: 'center'
               },
               { 
                 text: item[43],
@@ -269,13 +265,16 @@ const handleShiftChange = (value:any) => {
                 alignment: 'center'
               },
               { 
-                text: item[46],alignment: 'center' 
+                text: item[46],
+                alignment: 'center'
               },
-              { text: item[47],alignment: 'center' },
+              { 
+                text: item[47],alignment: 'center' 
+              },
               { text: item[48],alignment: 'center' },
               { text: item[49],alignment: 'center' },
               { text: item[50],alignment: 'center' },
-              { text: item[114],alignment: 'center' },
+              { text: item[51],alignment: 'center' },
               { text: item[115],alignment: 'center' },
               { text: item[116],alignment: 'center' },
               { text: item[117],alignment: 'center' },
@@ -284,28 +283,25 @@ const handleShiftChange = (value:any) => {
               { text: item[120],alignment: 'center' },
               { text: item[121],alignment: 'center' },
               { text: item[122],alignment: 'center' },
-              { text: item[136],alignment: 'center' },
+              { text: item[123],alignment: 'center' },
+              { text: item[137],alignment: 'center' },
               "",
-              { text: item[155],alignment: 'center' },
               { text: item[156],alignment: 'center' },
               { text: item[157],alignment: 'center' },
               { text: item[158],alignment: 'center' },
               { text: item[159],alignment: 'center' },
-              { text: item[160] }
+              { text: item[160],alignment: 'center' },
+              { text: item[161] }
         ]
         tableRows.push(rowSubicu); 
       } 
 
-      if (item[2] === 'NICU') {
+      if (item[3] === 'NICU') {
         const rowNicu = [
           { text: index+1,alignment: 'center'
           },
-              { text: item[2]
+              { text: item[3]
                 
-              },
-              { 
-                text: item[42],
-                alignment: 'center'
               },
               { 
                 text: item[43],
@@ -320,13 +316,16 @@ const handleShiftChange = (value:any) => {
                 alignment: 'center'
               },
               { 
-                text: item[46],alignment: 'center' 
+                text: item[46],
+                alignment: 'center'
               },
-              { text: item[47],alignment: 'center' },
+              { 
+                text: item[47],alignment: 'center' 
+              },
               { text: item[48],alignment: 'center' },
               { text: item[49],alignment: 'center' },
               { text: item[50],alignment: 'center' },
-              { text: item[114],alignment: 'center' },
+              { text: item[51],alignment: 'center' },
               { text: item[115],alignment: 'center' },
               { text: item[116],alignment: 'center' },
               { text: item[117],alignment: 'center' },
@@ -335,28 +334,25 @@ const handleShiftChange = (value:any) => {
               { text: item[120],alignment: 'center' },
               { text: item[121],alignment: 'center' },
               { text: item[122],alignment: 'center' },
-              { text: item[136],alignment: 'center' },
+              { text: item[123],alignment: 'center' },
+              { text: item[137],alignment: 'center' },
               "",
-              { text: item[155],alignment: 'center' },
               { text: item[156],alignment: 'center' },
               { text: item[157],alignment: 'center' },
               { text: item[158],alignment: 'center' },
               { text: item[159],alignment: 'center' },
-              { text: item[160] }
+              { text: item[160],alignment: 'center' },
+              { text: item[161] }
         ]
         tableRows.push(rowNicu); 
       } 
 
-      if (item[2] === 'หอผู้ป่วยอายุรกรรมหญิง') {
+      if (item[3] === 'หอผู้ป่วยอายุรกรรมหญิง') {
         const rowMedFemale = [
           { text: index+1,alignment: 'center'
           },
-              { text: item[2]
+              { text: item[3]
                 
-              },
-              { 
-                text: item[42],
-                alignment: 'center'
               },
               { 
                 text: item[43],
@@ -371,13 +367,16 @@ const handleShiftChange = (value:any) => {
                 alignment: 'center'
               },
               { 
-                text: item[46],alignment: 'center' 
+                text: item[46],
+                alignment: 'center'
               },
-              { text: item[47],alignment: 'center' },
+              { 
+                text: item[47],alignment: 'center' 
+              },
               { text: item[48],alignment: 'center' },
               { text: item[49],alignment: 'center' },
               { text: item[50],alignment: 'center' },
-              { text: item[114],alignment: 'center' },
+              { text: item[51],alignment: 'center' },
               { text: item[115],alignment: 'center' },
               { text: item[116],alignment: 'center' },
               { text: item[117],alignment: 'center' },
@@ -386,28 +385,25 @@ const handleShiftChange = (value:any) => {
               { text: item[120],alignment: 'center' },
               { text: item[121],alignment: 'center' },
               { text: item[122],alignment: 'center' },
-              { text: item[136],alignment: 'center' },
+              { text: item[123],alignment: 'center' },
+              { text: item[137],alignment: 'center' },
               "",
-              { text: item[155],alignment: 'center' },
               { text: item[156],alignment: 'center' },
               { text: item[157],alignment: 'center' },
               { text: item[158],alignment: 'center' },
               { text: item[159],alignment: 'center' },
-              { text: item[160] }
+              { text: item[160],alignment: 'center' },
+              { text: item[161] }
         ]
         tableRows.push(rowMedFemale); 
       } 
 
-      if (item[2] === 'หอผู้ป่วยอายุรกรรมชาย') {
+      if (item[3] === 'หอผู้ป่วยอายุรกรรมชาย') {
         const rowMedmale = [
           { text: index+1,alignment: 'center'
           },
-              { text: item[2]
+              { text: item[3]
                 
-              },
-              { 
-                text: item[42],
-                alignment: 'center'
               },
               { 
                 text: item[43],
@@ -422,13 +418,16 @@ const handleShiftChange = (value:any) => {
                 alignment: 'center'
               },
               { 
-                text: item[46],alignment: 'center' 
+                text: item[46],
+                alignment: 'center'
               },
-              { text: item[47],alignment: 'center' },
+              { 
+                text: item[47],alignment: 'center' 
+              },
               { text: item[48],alignment: 'center' },
               { text: item[49],alignment: 'center' },
               { text: item[50],alignment: 'center' },
-              { text: item[114],alignment: 'center' },
+              { text: item[51],alignment: 'center' },
               { text: item[115],alignment: 'center' },
               { text: item[116],alignment: 'center' },
               { text: item[117],alignment: 'center' },
@@ -437,28 +436,25 @@ const handleShiftChange = (value:any) => {
               { text: item[120],alignment: 'center' },
               { text: item[121],alignment: 'center' },
               { text: item[122],alignment: 'center' },
-              { text: item[136],alignment: 'center' },
+              { text: item[123],alignment: 'center' },
+              { text: item[137],alignment: 'center' },
               "",
-              { text: item[155],alignment: 'center' },
               { text: item[156],alignment: 'center' },
               { text: item[157],alignment: 'center' },
               { text: item[158],alignment: 'center' },
               { text: item[159],alignment: 'center' },
-              { text: item[160] }
+              { text: item[160],alignment: 'center' },
+              { text: item[161] }
         ]
         tableRows.push(rowMedmale); 
       } 
 
-      if (item[2] === 'หอผู้ป่วยศัลยกรรมหญิง') {
+      if (item[3] === 'หอผู้ป่วยศัลยกรรมหญิง') {
         const rowSurgFemale = [
           { text: index+1,alignment: 'center'
           },
-              { text: item[2]
+              { text: item[3]
                 
-              },
-              { 
-                text: item[42],
-                alignment: 'center'
               },
               { 
                 text: item[43],
@@ -473,13 +469,16 @@ const handleShiftChange = (value:any) => {
                 alignment: 'center'
               },
               { 
-                text: item[46],alignment: 'center' 
+                text: item[46],
+                alignment: 'center'
               },
-              { text: item[47],alignment: 'center' },
+              { 
+                text: item[47],alignment: 'center' 
+              },
               { text: item[48],alignment: 'center' },
               { text: item[49],alignment: 'center' },
               { text: item[50],alignment: 'center' },
-              { text: item[114],alignment: 'center' },
+              { text: item[51],alignment: 'center' },
               { text: item[115],alignment: 'center' },
               { text: item[116],alignment: 'center' },
               { text: item[117],alignment: 'center' },
@@ -488,28 +487,25 @@ const handleShiftChange = (value:any) => {
               { text: item[120],alignment: 'center' },
               { text: item[121],alignment: 'center' },
               { text: item[122],alignment: 'center' },
-              { text: item[136],alignment: 'center' },
+              { text: item[123],alignment: 'center' },
+              { text: item[137],alignment: 'center' },
               "",
-              { text: item[155],alignment: 'center' },
               { text: item[156],alignment: 'center' },
               { text: item[157],alignment: 'center' },
               { text: item[158],alignment: 'center' },
               { text: item[159],alignment: 'center' },
-              { text: item[160] }
+              { text: item[160],alignment: 'center' },
+              { text: item[161] }
         ]
         tableRows.push(rowSurgFemale); 
       } 
 
-      if (item[2] === 'หอผู้ป่วยจิตเวช') {
+      if (item[3] === 'หอผู้ป่วยจิตเวช') {
         const rowPsychiatry = [
           { text: index+1,alignment: 'center'
           },
-              { text: item[2]
+              { text: item[3]
                 
-              },
-              { 
-                text: item[42],
-                alignment: 'center'
               },
               { 
                 text: item[43],
@@ -524,13 +520,16 @@ const handleShiftChange = (value:any) => {
                 alignment: 'center'
               },
               { 
-                text: item[46],alignment: 'center' 
+                text: item[46],
+                alignment: 'center'
               },
-              { text: item[47],alignment: 'center' },
+              { 
+                text: item[47],alignment: 'center' 
+              },
               { text: item[48],alignment: 'center' },
               { text: item[49],alignment: 'center' },
               { text: item[50],alignment: 'center' },
-              { text: item[114],alignment: 'center' },
+              { text: item[51],alignment: 'center' },
               { text: item[115],alignment: 'center' },
               { text: item[116],alignment: 'center' },
               { text: item[117],alignment: 'center' },
@@ -539,28 +538,25 @@ const handleShiftChange = (value:any) => {
               { text: item[120],alignment: 'center' },
               { text: item[121],alignment: 'center' },
               { text: item[122],alignment: 'center' },
-              { text: item[136],alignment: 'center' },
+              { text: item[123],alignment: 'center' },
+              { text: item[137],alignment: 'center' },
               "",
-              { text: item[155],alignment: 'center' },
               { text: item[156],alignment: 'center' },
               { text: item[157],alignment: 'center' },
               { text: item[158],alignment: 'center' },
               { text: item[159],alignment: 'center' },
-              { text: item[160] }
+              { text: item[160],alignment: 'center' },
+              { text: item[161] }
         ]
         tableRows.push(rowPsychiatry); 
       } 
 
-      if (item[2] === 'งานห้องคลอด') {
+      if (item[3] === 'งานห้องคลอด') {
         const rowLR = [
           { text: index+1,alignment: 'center'
           },
-              { text: item[2]
+              { text: item[3]
                 
-              },
-              { 
-                text: item[42],
-                alignment: 'center'
               },
               { 
                 text: item[43],
@@ -575,13 +571,16 @@ const handleShiftChange = (value:any) => {
                 alignment: 'center'
               },
               { 
-                text: item[46],alignment: 'center' 
+                text: item[46],
+                alignment: 'center'
               },
-              { text: item[47],alignment: 'center' },
+              { 
+                text: item[47],alignment: 'center' 
+              },
               { text: item[48],alignment: 'center' },
               { text: item[49],alignment: 'center' },
               { text: item[50],alignment: 'center' },
-              { text: item[114],alignment: 'center' },
+              { text: item[51],alignment: 'center' },
               { text: item[115],alignment: 'center' },
               { text: item[116],alignment: 'center' },
               { text: item[117],alignment: 'center' },
@@ -590,28 +589,25 @@ const handleShiftChange = (value:any) => {
               { text: item[120],alignment: 'center' },
               { text: item[121],alignment: 'center' },
               { text: item[122],alignment: 'center' },
-              { text: item[136],alignment: 'center' },
+              { text: item[123],alignment: 'center' },
+              { text: item[137],alignment: 'center' },
               "",
-              { text: item[155],alignment: 'center' },
               { text: item[156],alignment: 'center' },
               { text: item[157],alignment: 'center' },
               { text: item[158],alignment: 'center' },
               { text: item[159],alignment: 'center' },
-              { text: item[160] }
+              { text: item[160],alignment: 'center' },
+              { text: item[161] }
         ]
         tableRows.push(rowLR); 
       } 
 
-      if (item[2] === 'หอผู้ป่วยสุขใจ') {
+      if (item[3] === 'หอผู้ป่วยสุขใจ') {
         const rowHappyHeart = [
           { text: index+1,alignment: 'center'
           },
-              { text: item[2]
+              { text: item[3]
                 
-              },
-              { 
-                text: item[42],
-                alignment: 'center'
               },
               { 
                 text: item[43],
@@ -626,13 +622,16 @@ const handleShiftChange = (value:any) => {
                 alignment: 'center'
               },
               { 
-                text: item[46],alignment: 'center' 
+                text: item[46],
+                alignment: 'center'
               },
-              { text: item[47],alignment: 'center' },
+              { 
+                text: item[47],alignment: 'center' 
+              },
               { text: item[48],alignment: 'center' },
               { text: item[49],alignment: 'center' },
               { text: item[50],alignment: 'center' },
-              { text: item[114],alignment: 'center' },
+              { text: item[51],alignment: 'center' },
               { text: item[115],alignment: 'center' },
               { text: item[116],alignment: 'center' },
               { text: item[117],alignment: 'center' },
@@ -641,28 +640,25 @@ const handleShiftChange = (value:any) => {
               { text: item[120],alignment: 'center' },
               { text: item[121],alignment: 'center' },
               { text: item[122],alignment: 'center' },
-              { text: item[136],alignment: 'center' },
+              { text: item[123],alignment: 'center' },
+              { text: item[137],alignment: 'center' },
               "",
-              { text: item[155],alignment: 'center' },
               { text: item[156],alignment: 'center' },
               { text: item[157],alignment: 'center' },
               { text: item[158],alignment: 'center' },
               { text: item[159],alignment: 'center' },
-              { text: item[160] }
+              { text: item[160],alignment: 'center' },
+              { text: item[161] }
         ]
         tableRows.push(rowHappyHeart); 
       } 
 
-      if (item[2] === 'พิเศษอายุรกรรม ชั้น2 (อาคาร75ปี)') {
+      if (item[3] === 'พิเศษอายุรกรรม ชั้น2 (อาคาร75ปี)') {
         const rowSPmed = [
           { text: index+1,alignment: 'center'
           },
-              { text: item[2]
+              { text: item[3]
                 
-              },
-              { 
-                text: item[28],
-                alignment: 'center'
               },
               { 
                 text: item[29],
@@ -677,13 +673,16 @@ const handleShiftChange = (value:any) => {
                 alignment: 'center'
               },
               { 
-                text: item[32],alignment: 'center' 
+                text: item[32],
+                alignment: 'center'
+              },
+              { 
+                text: item[33],alignment: 'center' 
               },
               { text: "",alignment: 'center' },
               { text: "",alignment: 'center' },
               { text: "",alignment: 'center' },
               { text: "",alignment: 'center' },
-              { text: item[96],alignment: 'center' },
               { text: item[97],alignment: 'center' },
               { text: item[98],alignment: 'center' },
               { text: item[99],alignment: 'center' },
@@ -692,48 +691,48 @@ const handleShiftChange = (value:any) => {
               { text: item[102],alignment: 'center' },
               { text: item[103],alignment: 'center' },
               { text: item[104],alignment: 'center' },
-              { text: item[133],alignment: 'center' },
+              { text: item[105],alignment: 'center' },
               { text: item[134],alignment: 'center' },
-              { text: item[155],alignment: 'center' },
+              { text: item[135],alignment: 'center' },
               { text: item[156],alignment: 'center' },
               { text: item[157],alignment: 'center' },
               { text: item[158],alignment: 'center' },
               { text: item[159],alignment: 'center' },
-              { text: item[160] }
+              { text: item[160],alignment: 'center' },
+              { text: item[161] }
         ]
         tableRows.push(rowSPmed); 
       } 
 
-      if (item[2] === 'หอผู้ป่วยศัลยกรรมชาย') {
+      if (item[3] === 'หอผู้ป่วยศัลยกรรมชาย') {
         const newRowMaleSurgicalWard = [
           [
           { text: index+1,alignment: 'center'
           },
-              { text: item[2]
+              { text: item[3]
                 
               },
               { 
-                text: item[13],alignment: 'center'
+                text: item[14],alignment: 'center'
               },
               { 
-                text: item[14] ,alignment: 'center'
-              },
-              { 
-                text: item[15],
-                alignment: 'center'
+                text: item[15] ,alignment: 'center'
               },
               { 
                 text: item[16],
                 alignment: 'center'
               },
               { 
-                text: item[17],alignment: 'center' 
+                text: item[17],
+                alignment: 'center'
+              },
+              { 
+                text: item[18],alignment: 'center' 
               },
               { text: "",alignment: 'center' },
               { text: "",alignment: 'center' },
               { text: "",alignment: 'center' },
               { text: "",alignment: 'center' },
-              { text: item[69],alignment: 'center' },
               { text: item[70],alignment: 'center' },
               { text: item[71],alignment: 'center' },
               { text: item[72],alignment: 'center' },
@@ -742,14 +741,15 @@ const handleShiftChange = (value:any) => {
               { text: item[75],alignment: 'center' },
               { text: item[76],alignment: 'center' },
               { text: item[77],alignment: 'center' },
-              { text: item[127],alignment: 'center' },
+              { text: item[78],alignment: 'center' },
               { text: item[128],alignment: 'center' },
-              { text: item[155],alignment: 'center' },
+              { text: item[129],alignment: 'center' },
               { text: item[156],alignment: 'center' },
               { text: item[157],alignment: 'center' },
               { text: item[158],alignment: 'center' },
               { text: item[159],alignment: 'center' },
-              { text: item[160] }
+              { text: item[160],alignment: 'center' },
+              { text: item[161] }
         ],
         [
           { text: ""
@@ -758,27 +758,26 @@ const handleShiftChange = (value:any) => {
                 
               },
               { 
-                text: item[33],alignment: 'center'
+                text: item[34],alignment: 'center'
               },
               { 
-                text: item[34] ,alignment: 'center'
-              },
-              { 
-                text: item[35],
-                alignment: 'center'
+                text: item[35] ,alignment: 'center'
               },
               { 
                 text: item[36],
                 alignment: 'center'
               },
               { 
-                text: item[37],alignment: 'center' 
+                text: item[37],
+                alignment: 'center'
               },
-              { text: item[38],alignment: 'center' },
+              { 
+                text: item[38],alignment: 'center' 
+              },
               { text: item[39],alignment: 'center' },
               { text: item[40],alignment: 'center' },
               { text: item[41],alignment: 'center' },
-              { text: item[105],alignment: 'center' },
+              { text: item[42],alignment: 'center' },
               { text: item[106],alignment: 'center' },
               { text: item[107],alignment: 'center' },
               { text: item[108],alignment: 'center' },
@@ -787,7 +786,8 @@ const handleShiftChange = (value:any) => {
               { text: item[111],alignment: 'center' },
               { text: item[112],alignment: 'center' },
               { text: item[113],alignment: 'center' },
-              { text: item[135],alignment: 'center' },
+              { text: item[114],alignment: 'center' },
+              { text: item[136],alignment: 'center' },
               { text: "" },
               { text: "" },
               { text: "" },
@@ -800,36 +800,35 @@ const handleShiftChange = (value:any) => {
         tableRows.push(...newRowMaleSurgicalWard); 
       } 
       
-      if (item[2] === 'หอผู้ป่วยศัลยกรรมกระดูก') {
+      if (item[3] === 'หอผู้ป่วยศัลยกรรมกระดูก') {
         const newRowOrthopedicSurgicalWard = [
           [
             { text: index+1,alignment: 'center'
             },
-                { text: item[2]
+                { text: item[3]
                   
                 },
                 { 
-                  text: item[13],alignment: 'center'
+                  text: item[14],alignment: 'center'
                 },
                 { 
-                  text: item[14] ,alignment: 'center'
-                },
-                { 
-                  text: item[15],
-                  alignment: 'center'
+                  text: item[15] ,alignment: 'center'
                 },
                 { 
                   text: item[16],
                   alignment: 'center'
                 },
                 { 
-                  text: item[17],alignment: 'center' 
+                  text: item[17],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[18],alignment: 'center' 
                 },
                 { text: "",alignment: 'center' },
                 { text: "",alignment: 'center' },
                 { text: "",alignment: 'center' },
                 { text: "",alignment: 'center' },
-                { text: item[69],alignment: 'center' },
                 { text: item[70],alignment: 'center' },
                 { text: item[71],alignment: 'center' },
                 { text: item[72],alignment: 'center' },
@@ -838,14 +837,15 @@ const handleShiftChange = (value:any) => {
                 { text: item[75],alignment: 'center' },
                 { text: item[76],alignment: 'center' },
                 { text: item[77],alignment: 'center' },
-                { text: item[127],alignment: 'center' },
+                { text: item[78],alignment: 'center' },
                 { text: item[128],alignment: 'center' },
-                { text: item[155],alignment: 'center' },
+                { text: item[129],alignment: 'center' },
                 { text: item[156],alignment: 'center' },
                 { text: item[157],alignment: 'center' },
                 { text: item[158],alignment: 'center' },
                 { text: item[159],alignment: 'center' },
-                { text: item[160] }
+                { text: item[160],alignment: 'center' },
+                { text: item[161] }
           ],
           [
             { text: ""
@@ -854,27 +854,26 @@ const handleShiftChange = (value:any) => {
                   
                 },
                 { 
-                  text: item[33],alignment: 'center'
+                  text: item[34],alignment: 'center'
                 },
                 { 
-                  text: item[34] ,alignment: 'center'
-                },
-                { 
-                  text: item[35],
-                  alignment: 'center'
+                  text: item[35] ,alignment: 'center'
                 },
                 { 
                   text: item[36],
                   alignment: 'center'
                 },
                 { 
-                  text: item[37],alignment: 'center' 
+                  text: item[37],
+                  alignment: 'center'
                 },
-                { text: item[38],alignment: 'center' },
+                { 
+                  text: item[38],alignment: 'center' 
+                },
                 { text: item[39],alignment: 'center' },
                 { text: item[40],alignment: 'center' },
                 { text: item[41],alignment: 'center' },
-                { text: item[105],alignment: 'center' },
+                { text: item[42],alignment: 'center' },
                 { text: item[106],alignment: 'center' },
                 { text: item[107],alignment: 'center' },
                 { text: item[108],alignment: 'center' },
@@ -883,7 +882,8 @@ const handleShiftChange = (value:any) => {
                 { text: item[111],alignment: 'center' },
                 { text: item[112],alignment: 'center' },
                 { text: item[113],alignment: 'center' },
-                { text: item[135],alignment: 'center' },
+                { text: item[114],alignment: 'center' },
+                { text: item[136],alignment: 'center' },
                 { text: "" },
                 { text: "" },
                 { text: "" },
@@ -896,36 +896,35 @@ const handleShiftChange = (value:any) => {
         tableRows.push(...newRowOrthopedicSurgicalWard); 
       }
 
-      if (item[2] === 'หอผู้ป่วยตาหูคอจมูก') {
+      if (item[3] === 'หอผู้ป่วยตาหูคอจมูก') {
         const newRowENTWard = [
           [
             { text: index+1,alignment: 'center'
             },
-                { text: item[2]
+                { text: item[3]
                   
                 },
                 { 
-                  text: item[13],alignment: 'center'
+                  text: item[14],alignment: 'center'
                 },
                 { 
-                  text: item[14] ,alignment: 'center'
-                },
-                { 
-                  text: item[15],
-                  alignment: 'center'
+                  text: item[15] ,alignment: 'center'
                 },
                 { 
                   text: item[16],
                   alignment: 'center'
                 },
                 { 
-                  text: item[17],alignment: 'center' 
+                  text: item[17],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[18],alignment: 'center' 
                 },
                 { text: "",alignment: 'center' },
                 { text: "",alignment: 'center' },
                 { text: "",alignment: 'center' },
                 { text: "",alignment: 'center' },
-                { text: item[69],alignment: 'center' },
                 { text: item[70],alignment: 'center' },
                 { text: item[71],alignment: 'center' },
                 { text: item[72],alignment: 'center' },
@@ -934,14 +933,15 @@ const handleShiftChange = (value:any) => {
                 { text: item[75],alignment: 'center' },
                 { text: item[76],alignment: 'center' },
                 { text: item[77],alignment: 'center' },
-                { text: item[127],alignment: 'center' },
+                { text: item[78],alignment: 'center' },
                 { text: item[128],alignment: 'center' },
-                { text: item[155],alignment: 'center' },
+                { text: item[129],alignment: 'center' },
                 { text: item[156],alignment: 'center' },
                 { text: item[157],alignment: 'center' },
                 { text: item[158],alignment: 'center' },
                 { text: item[159],alignment: 'center' },
-                { text: item[160] }
+                { text: item[160],alignment: 'center' },
+                { text: item[161] }
           ],
           [
             { text: ""
@@ -950,27 +950,26 @@ const handleShiftChange = (value:any) => {
                   
                 },
                 { 
-                  text: item[33],alignment: 'center'
+                  text: item[34],alignment: 'center'
                 },
                 { 
-                  text: item[34] ,alignment: 'center'
-                },
-                { 
-                  text: item[35],
-                  alignment: 'center'
+                  text: item[35] ,alignment: 'center'
                 },
                 { 
                   text: item[36],
                   alignment: 'center'
                 },
                 { 
-                  text: item[37],alignment: 'center' 
+                  text: item[37],
+                  alignment: 'center'
                 },
-                { text: item[38],alignment: 'center' },
+                { 
+                  text: item[38],alignment: 'center' 
+                },
                 { text: item[39],alignment: 'center' },
                 { text: item[40],alignment: 'center' },
                 { text: item[41],alignment: 'center' },
-                { text: item[105],alignment: 'center' },
+                { text: item[42],alignment: 'center' },
                 { text: item[106],alignment: 'center' },
                 { text: item[107],alignment: 'center' },
                 { text: item[108],alignment: 'center' },
@@ -979,49 +978,49 @@ const handleShiftChange = (value:any) => {
                 { text: item[111],alignment: 'center' },
                 { text: item[112],alignment: 'center' },
                 { text: item[113],alignment: 'center' },
-                { text: item[135],alignment: 'center' },
+                { text: item[114],alignment: 'center' },
+                { text: item[136],alignment: 'center' },
                 { text: "" },
-              { text: "" },
-              { text: "" },
-              { text: "" },
-              { text: "" },
-              { text: "" },
-              { text: "" }
+                { text: "" },
+                { text: "" },
+                { text: "" },
+                { text: "" },
+                { text: "" },
+                { text: "" }
             ]
         ]
         tableRows.push(...newRowENTWard); 
       }
 
-      if (item[2] === 'หอผู้ป่วยสูตินรีเวชกรรม') {
+      if (item[3] === 'หอผู้ป่วยสูตินรีเวชกรรม') {
         const newRowObstetricGynecologyWard = [
           [
             { text: index+1,alignment: 'center'
             },
-                { text: item[2]
+                { text: item[3]
                   
                 },
                 { 
-                  text: item[13],alignment: 'center'
+                  text: item[14],alignment: 'center'
                 },
                 { 
-                  text: item[14] ,alignment: 'center'
-                },
-                { 
-                  text: item[15],
-                  alignment: 'center'
+                  text: item[15] ,alignment: 'center'
                 },
                 { 
                   text: item[16],
                   alignment: 'center'
                 },
                 { 
-                  text: item[17],alignment: 'center' 
+                  text: item[17],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[18],alignment: 'center' 
                 },
                 { text: "",alignment: 'center' },
                 { text: "",alignment: 'center' },
                 { text: "",alignment: 'center' },
                 { text: "",alignment: 'center' },
-                { text: item[69],alignment: 'center' },
                 { text: item[70],alignment: 'center' },
                 { text: item[71],alignment: 'center' },
                 { text: item[72],alignment: 'center' },
@@ -1030,14 +1029,15 @@ const handleShiftChange = (value:any) => {
                 { text: item[75],alignment: 'center' },
                 { text: item[76],alignment: 'center' },
                 { text: item[77],alignment: 'center' },
-                { text: item[127],alignment: 'center' },
+                { text: item[78],alignment: 'center' },
                 { text: item[128],alignment: 'center' },
-                { text: item[155],alignment: 'center' },
+                { text: item[129],alignment: 'center' },
                 { text: item[156],alignment: 'center' },
                 { text: item[157],alignment: 'center' },
                 { text: item[158],alignment: 'center' },
                 { text: item[159],alignment: 'center' },
-                { text: item[160] }
+                { text: item[160],alignment: 'center' },
+                { text: item[161] }
           ],
           [
             { text: ""
@@ -1046,27 +1046,26 @@ const handleShiftChange = (value:any) => {
                   
                 },
                 { 
-                  text: item[33],alignment: 'center'
+                  text: item[34],alignment: 'center'
                 },
                 { 
-                  text: item[34] ,alignment: 'center'
-                },
-                { 
-                  text: item[35],
-                  alignment: 'center'
+                  text: item[35] ,alignment: 'center'
                 },
                 { 
                   text: item[36],
                   alignment: 'center'
                 },
                 { 
-                  text: item[37],alignment: 'center' 
+                  text: item[37],
+                  alignment: 'center'
                 },
-                { text: item[38],alignment: 'center' },
+                { 
+                  text: item[38],alignment: 'center' 
+                },
                 { text: item[39],alignment: 'center' },
                 { text: item[40],alignment: 'center' },
                 { text: item[41],alignment: 'center' },
-                { text: item[105],alignment: 'center' },
+                { text: item[42],alignment: 'center' },
                 { text: item[106],alignment: 'center' },
                 { text: item[107],alignment: 'center' },
                 { text: item[108],alignment: 'center' },
@@ -1075,49 +1074,49 @@ const handleShiftChange = (value:any) => {
                 { text: item[111],alignment: 'center' },
                 { text: item[112],alignment: 'center' },
                 { text: item[113],alignment: 'center' },
-                { text: item[135],alignment: 'center' },
+                { text: item[114],alignment: 'center' },
+                { text: item[136],alignment: 'center' },
                 { text: "" },
-              { text: "" },
-              { text: "" },
-              { text: "" },
-              { text: "" },
-              { text: "" },
-              { text: "" }
+                { text: "" },
+                { text: "" },
+                { text: "" },
+                { text: "" },
+                { text: "" },
+                { text: "" }
             ]
       ]
         tableRows.push(...newRowObstetricGynecologyWard); 
       }
 
-      if (item[2] === 'หอผู้ป่วยกุมารเวชกรรม') {
+      if (item[3] === 'หอผู้ป่วยกุมารเวชกรรม') {
         const newRowBabyWard = [
           [
             { text: index+1,alignment: 'center'
             },
-                { text: item[2]
+                { text: item[3]
                   
                 },
                 { 
-                  text: item[13],alignment: 'center'
+                  text: item[14],alignment: 'center'
                 },
                 { 
-                  text: item[14] ,alignment: 'center'
-                },
-                { 
-                  text: item[15],
-                  alignment: 'center'
+                  text: item[15] ,alignment: 'center'
                 },
                 { 
                   text: item[16],
                   alignment: 'center'
                 },
                 { 
-                  text: item[17],alignment: 'center' 
+                  text: item[17],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[18],alignment: 'center' 
                 },
                 { text: "",alignment: 'center' },
                 { text: "",alignment: 'center' },
                 { text: "",alignment: 'center' },
                 { text: "",alignment: 'center' },
-                { text: item[69],alignment: 'center' },
                 { text: item[70],alignment: 'center' },
                 { text: item[71],alignment: 'center' },
                 { text: item[72],alignment: 'center' },
@@ -1126,14 +1125,15 @@ const handleShiftChange = (value:any) => {
                 { text: item[75],alignment: 'center' },
                 { text: item[76],alignment: 'center' },
                 { text: item[77],alignment: 'center' },
-                { text: item[127],alignment: 'center' },
+                { text: item[78],alignment: 'center' },
                 { text: item[128],alignment: 'center' },
-                { text: item[155],alignment: 'center' },
+                { text: item[129],alignment: 'center' },
                 { text: item[156],alignment: 'center' },
                 { text: item[157],alignment: 'center' },
                 { text: item[158],alignment: 'center' },
                 { text: item[159],alignment: 'center' },
-                { text: item[160] }
+                { text: item[160],alignment: 'center' },
+                { text: item[161] }
           ],
           [
             { text: ""
@@ -1142,27 +1142,26 @@ const handleShiftChange = (value:any) => {
                   
                 },
                 { 
-                  text: item[33],alignment: 'center'
+                  text: item[34],alignment: 'center'
                 },
                 { 
-                  text: item[34] ,alignment: 'center'
-                },
-                { 
-                  text: item[35],
-                  alignment: 'center'
+                  text: item[35] ,alignment: 'center'
                 },
                 { 
                   text: item[36],
                   alignment: 'center'
                 },
                 { 
-                  text: item[37],alignment: 'center' 
+                  text: item[37],
+                  alignment: 'center'
                 },
-                { text: item[38],alignment: 'center' },
+                { 
+                  text: item[38],alignment: 'center' 
+                },
                 { text: item[39],alignment: 'center' },
                 { text: item[40],alignment: 'center' },
                 { text: item[41],alignment: 'center' },
-                { text: item[105],alignment: 'center' },
+                { text: item[42],alignment: 'center' },
                 { text: item[106],alignment: 'center' },
                 { text: item[107],alignment: 'center' },
                 { text: item[108],alignment: 'center' },
@@ -1171,49 +1170,49 @@ const handleShiftChange = (value:any) => {
                 { text: item[111],alignment: 'center' },
                 { text: item[112],alignment: 'center' },
                 { text: item[113],alignment: 'center' },
-                { text: item[135],alignment: 'center' },
+                { text: item[114],alignment: 'center' },
+                { text: item[136],alignment: 'center' },
                 { text: "" },
-              { text: "" },
-              { text: "" },
-              { text: "" },
-              { text: "" },
-              { text: "" },
-              { text: "" }
+                { text: "" },
+                { text: "" },
+                { text: "" },
+                { text: "" },
+                { text: "" },
+                { text: "" }
             ]
       ]
         tableRows.push(...newRowBabyWard); 
       }
 
-      if (item[2] === 'หอผู้ป่วยพระสงฆ์ ชั้น 6 (อาคาร75ปี)') {
+      if (item[3] === 'หอผู้ป่วยพระสงฆ์ ชั้น 6 (อาคาร75ปี)') {
         const newRowMonkWard = [ 
           [
             { text: index+1,alignment: 'center'
             },
-                { text: item[2]
+                { text: item[3]
                   
-                },
-                { 
-                  text: item[3],alignment: 'center'
                 },
                 { 
                   text: item[4],alignment: 'center'
                 },
                 { 
-                  text: item[5],
-                  alignment: 'center'
+                  text: item[5],alignment: 'center'
                 },
                 { 
                   text: item[6],
                   alignment: 'center'
                 },
                 { 
-                  text: item[7],alignment: 'center' 
+                  text: item[7],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[8],alignment: 'center' 
                 },
                 { text: "",alignment: 'center' },
                 { text: "",alignment: 'center' },
                 { text: "",alignment: 'center' },
                 { text: "",alignment: 'center' },
-                { text: item[51],alignment: 'center' },
                 { text: item[52],alignment: 'center' },
                 { text: item[53],alignment: 'center' },
                 { text: item[54],alignment: 'center' },
@@ -1222,14 +1221,15 @@ const handleShiftChange = (value:any) => {
                 { text: item[57],alignment: 'center' },
                 { text: item[58],alignment: 'center' },
                 { text: item[59],alignment: 'center' },
-                { text: item[123],alignment: 'center' },
+                { text: item[60],alignment: 'center' },
                 { text: item[124],alignment: 'center' },
-                { text: item[155],alignment: 'center' },
+                { text: item[125],alignment: 'center' },
                 { text: item[156],alignment: 'center' },
                 { text: item[157],alignment: 'center' },
                 { text: item[158],alignment: 'center' },
                 { text: item[159],alignment: 'center' },
-                { text: item[160] }
+                { text: item[160],alignment: 'center' },
+                { text: item[161] }
           ],
           
           [
@@ -1239,27 +1239,26 @@ const handleShiftChange = (value:any) => {
                 
               },
               { 
-                text: item[8],alignment: 'center'
+                text: item[9],alignment: 'center'
               },
               { 
-                text:item[9],alignment: 'center'
-              },
-              { 
-                text: item[10],
-                alignment: 'center'
+                text:item[10],alignment: 'center'
               },
               { 
                 text: item[11],
                 alignment: 'center'
               },
               { 
-                text: item[12],alignment: 'center' 
+                text: item[12],
+                alignment: 'center'
+              },
+              { 
+                text: item[13],alignment: 'center' 
               },
               { text: "",alignment: 'center' },
               { text: "",alignment: 'center' },
               { text: "",alignment: 'center' },
               { text: "",alignment: 'center' },
-              { text: item[60],alignment: 'center' },
               { text: item[61],alignment: 'center' },
               { text: item[62],alignment: 'center' },
               { text: item[63],alignment: 'center' },
@@ -1268,8 +1267,9 @@ const handleShiftChange = (value:any) => {
               { text: item[66],alignment: 'center' },
               { text: item[67],alignment: 'center' },
               { text: item[68],alignment: 'center' },
-              { text: item[125],alignment: 'center' },
+              { text: item[69],alignment: 'center' },
               { text: item[126],alignment: 'center' },
+              { text: item[127],alignment: 'center' },
               { text: "" },
               { text: "" },
               { text: "" },
@@ -1281,36 +1281,35 @@ const handleShiftChange = (value:any) => {
         tableRows.push(...newRowMonkWard); 
       }
 
-      if (item[2] === 'หอผู้ป่วยพิเศษชั้น 6-7 อาคาร100ปีฯ') {
+      if (item[3] === 'หอผู้ป่วยพิเศษชั้น 6-7 อาคาร100ปีฯ') {
         const newRowSpecialWard = [
           [
             { text: index+1,alignment: 'center'
             },
-                { text: item[2]
+                { text: item[3]
                   
-                },
-                { 
-                  text: item[18],alignment: 'center'
                 },
                 { 
                   text: item[19],alignment: 'center'
                 },
                 { 
-                  text: item[20],
-                  alignment: 'center'
+                  text: item[20],alignment: 'center'
                 },
                 { 
                   text: item[21],
                   alignment: 'center'
                 },
                 { 
-                  text: item[22],alignment: 'center' 
+                  text: item[22],
+                  alignment: 'center'
+                },
+                { 
+                  text: item[23],alignment: 'center' 
                 },
                 { text: "",alignment: 'center' },
                 { text: "",alignment: 'center' },
                 { text: "",alignment: 'center' },
                 { text: "",alignment: 'center' },
-                { text: item[78],alignment: 'center' },
                 { text: item[79],alignment: 'center' },
                 { text: item[80],alignment: 'center' },
                 { text: item[81],alignment: 'center' },
@@ -1319,14 +1318,15 @@ const handleShiftChange = (value:any) => {
                 { text: item[84],alignment: 'center' },
                 { text: item[85],alignment: 'center' },
                 { text: item[86],alignment: 'center' },
-                { text: item[129],alignment: 'center' },
+                { text: item[87],alignment: 'center' },
                 { text: item[130],alignment: 'center' },
-                { text: item[155],alignment: 'center' },
+                { text: item[131],alignment: 'center' },
                 { text: item[156],alignment: 'center' },
                 { text: item[157],alignment: 'center' },
                 { text: item[158],alignment: 'center' },
                 { text: item[159],alignment: 'center' },
-                { text: item[160] }
+                { text: item[160],alignment: 'center' },
+                { text: item[161] }
           ],
           [
           { text: "",
@@ -1335,27 +1335,26 @@ const handleShiftChange = (value:any) => {
                 
               },
               { 
-                text: item[23],alignment: 'center'
+                text: item[24],alignment: 'center'
               },
               { 
-                text: item[24],alignment: 'center' 
-              },
-              { 
-                text: item[25],
-                alignment: 'center'
+                text: item[25],alignment: 'center' 
               },
               { 
                 text: item[26],
                 alignment: 'center'
               },
               { 
-                text: item[27],alignment: 'center' 
+                text: item[27],
+                alignment: 'center'
+              },
+              { 
+                text: item[28],alignment: 'center' 
               },
               { text: "",alignment: 'center' },
               { text: "",alignment: 'center' },
               { text: "",alignment: 'center' },
               { text: "",alignment: 'center' },
-              { text: item[87],alignment: 'center' },
               { text: item[88],alignment: 'center' },
               { text: item[89],alignment: 'center' },
               { text: item[90],alignment: 'center' },
@@ -1364,8 +1363,9 @@ const handleShiftChange = (value:any) => {
               { text: item[93],alignment: 'center' },
               { text: item[94],alignment: 'center' },
               { text: item[95],alignment: 'center' },
-              { text: item[131],alignment: 'center' },
+              { text: item[96],alignment: 'center' },
               { text: item[132],alignment: 'center' },
+              { text: item[133],alignment: 'center' },
               { text: "" },
               { text: "" },
               { text: "" },
@@ -1377,44 +1377,43 @@ const handleShiftChange = (value:any) => {
         tableRows.push(...newRowSpecialWard); 
       }
 
-      if (item[2] === 'งานห้องผ่าตัด') {
+      if (item[3] === 'งานห้องผ่าตัด') {
         const newRowOr = 
           [
             {text:index+1,alignment: 'center'},
-            {text:item[2]},
-            { text: item[137],alignment: 'center' },
-            { text: item[155],alignment: 'center' },
-                { text: item[156],alignment: 'center' },
+            {text:item[3]},
+            { text: item[138],alignment: 'center' },
+            { text: item[156],alignment: 'center' },
                 { text: item[157],alignment: 'center' },
                 { text: item[158],alignment: 'center' },
                 { text: item[159],alignment: 'center' },
                 { text: item[160],alignment: 'center' },
+                { text: item[161],alignment: 'center' }
           ]
   
         tableOrRows.push(newRowOr); 
       }
 
-      if (item[2] === 'งานวิสัญญีพยาบาล') {
+      if (item[3] === 'งานวิสัญญีพยาบาล') {
         const newRowAnes = [
           {text:index+1,alignment: 'center'},
-          {text:item[2]},
-          { text: item[137],alignment: 'center' },
-          { text: item[155],alignment: 'center' },
+          {text:item[3]},
+          { text: item[138],alignment: 'center' },
           { text: item[156],alignment: 'center' },
-          { text: item[157],alignment: 'center' },
-          { text: item[158],alignment: 'center' },
-          { text: item[159],alignment: 'center' },
-          { text: item[160],alignment: 'center' },
+              { text: item[157],alignment: 'center' },
+              { text: item[158],alignment: 'center' },
+              { text: item[159],alignment: 'center' },
+              { text: item[160],alignment: 'center' },
+              { text: item[161],alignment: 'center' }
         ]
         tableOrRows.push(newRowAnes); 
       }
 
-      if (item[2] === 'SMC') {
+      if (item[3] === 'SMC') {
         const newRowSmc = [
           {text: index+1,alignment: 'center'},
-          {text: item[2]},
-          { text: item[138],alignment: 'center' },
-          { text: item[139],alignment: 'center' },                
+          {text: item[3]},
+          { text: item[139],alignment: 'center' },
           { text: item[140],alignment: 'center' },                
           { text: item[141],alignment: 'center' },                
           { text: item[142],alignment: 'center' },                
@@ -1422,36 +1421,37 @@ const handleShiftChange = (value:any) => {
           { text: item[144],alignment: 'center' },                
           { text: item[145],alignment: 'center' },                
           { text: item[146],alignment: 'center' },                
-          { text: item[155],alignment: 'center' },
-                { text: item[156],alignment: 'center' },
-                { text: item[157],alignment: 'center' },
-                { text: item[158],alignment: 'center' },
-                { text: item[159],alignment: 'center' },
-                { text: item[160],alignment: 'center' },
+          { text: item[147],alignment: 'center' },                
+          { text: item[156],alignment: 'center' },
+              { text: item[157],alignment: 'center' },
+              { text: item[158],alignment: 'center' },
+              { text: item[159],alignment: 'center' },
+              { text: item[160],alignment: 'center' },
+              { text: item[161],alignment: 'center' }
         ]
         tableSmcRows.push(newRowSmc); 
       }
 
-      if (item[2] === 'งานอุบัติเหตุฉุกเฉิน') {
+      if (item[3] === 'งานอุบัติเหตุฉุกเฉิน') {
         const newRowEms = 
           [
             {text : index+1,alignment: 'center'},
-            {text : item[2]},
-            { text: item[147],alignment: 'center' },
-            { text: item[148],alignment: 'center' },                
+            {text : item[3]},
+            { text: item[148],alignment: 'center' },
             { text: item[149],alignment: 'center' },                
             { text: item[150],alignment: 'center' },                
             { text: item[151],alignment: 'center' },                
             { text: item[152],alignment: 'center' },                
             { text: item[153],alignment: 'center' },                
             { text: item[154],alignment: 'center' },                
-            { text: item[161],alignment: 'center' },                
-            { text: item[155],alignment: 'center' },
-                { text: item[156],alignment: 'center' },
-                { text: item[157],alignment: 'center' },
-                { text: item[158],alignment: 'center' },
-                { text: item[159],alignment: 'center' },
-                { text: item[160],alignment: 'center' },
+            { text: item[155],alignment: 'center' },                
+            { text: item[162],alignment: 'center' },                
+            { text: item[156],alignment: 'center' },
+            { text: item[157],alignment: 'center' },
+            { text: item[158],alignment: 'center' },
+            { text: item[159],alignment: 'center' },
+            { text: item[160],alignment: 'center' },
+            { text: item[161],alignment: 'center' }
           ]
       
         tableEmsRows.push(newRowEms); 

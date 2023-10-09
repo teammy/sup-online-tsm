@@ -48,19 +48,26 @@ export default function handler(req: any, res: any) {
       //CUSTOMIZATION FROM HERE
       const opt = {
         spreadsheetId: process.env.SHEET_ID,
-        range: "Sheet1!B2:FG",
+        range: "Sheet1!A2:FG",
       };
 
       let data: any = await gsapi.spreadsheets.values.get(opt);
 
-      const filterData = data.data.values.filter(
-        (item: any) => {
-            return (
-                item[0] === convertDate &&
-                item[1] === convertWorktime
-            );
+      const departmentRows: { [department: string]: any[] } = {};
+
+      for (const item of data.data.values) {
+        if (item[1] === convertDate && item[2] === convertWorktime) {
+            const department = item[3];
+            const timestamp = new Date(item[0]).getTime();
+            
+            // If the department isn't in our map or if the current timestamp is more recent, update the map
+            if (!departmentRows[department] || timestamp > new Date(departmentRows[department][0]).getTime()) {
+                departmentRows[department] = item;
+            }
         }
-    );
+    }
+
+    const filterData = Object.values(departmentRows);
     
 
       console.log(filterData);
